@@ -14,7 +14,7 @@
         @foreach (var item in ViewBag.banner)
         {
             <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))" >
-                <img class="d-block w-100" src="@item.Image" alt="....." height="100" width="100%" style="height:250px">
+                <img class="d-block w-100" src="@item.Image" alt="....." height="100" width="100%" >
             </div>
             first = false;
         }
@@ -70,13 +70,15 @@
                 </h5>
               </div>
                  <div class="styleprice">
-                <p class="card-text text-muted">@item.Price.ToString("c") </p>
+                <p class="card-text text-muted">@item.Price.ToString("c") </p> 
+                
                                 @if (item.Discount !=0)
                                 {
                                      <p class="card-text text-danger text-decoration-line-through">
                                            @item.Old_Price.ToString("c")
                                         </p>
-                                }         else
+                                }
+                                else
                                     {
                                         <p></p>
                                     }
