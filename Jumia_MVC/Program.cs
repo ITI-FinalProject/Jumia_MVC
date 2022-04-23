@@ -31,7 +31,7 @@ builder.Services.AddScoped<IProductsService, ProductsService>();
 //add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                  .AddEntityFrameworkStores<ApplicationDBContext>()
-              //error   //.AddDefaultUI()
+                 .AddDefaultUI()
                  .AddDefaultTokenProviders();
 
 //add secion

@@ -10,10 +10,6 @@ namespace FinalProject.MVC.Data.ViewModel
         {
             Categories=new List<Category>();   
         }
-        // error
-        //public static implicit operator ProductDropDownVM(ProductDropDownVM v)
-        //{
-        //    throw new NotImplementedException();
-        //}
+    
     }
 }
