@@ -51,7 +51,7 @@ namespace Jumia_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-
+            ViewBag.product = await _productsService.GellAll(e => e.Category);
             if (id == null) return View("NotFound");
            var res=await _productsService.GetProductByIdAsync(id);
             if(res==null) return View("NotFound");
