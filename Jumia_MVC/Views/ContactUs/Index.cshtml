@@ -1,6 +1,8 @@
-﻿@{
+﻿@model ContactUs
+@{
     ViewData["Title"] = "Index";
 }
+
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,19 +53,27 @@
             <div class="col-md-6">
               
               <form class="mb-5" method="post" id="contactForm" name="contactForm">
+
+               <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input asp-for="Name" type="text" class="form-control" name="Name" id="Name" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                </div>
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                    <input asp-for="Email" type="text" class="form-control" name="Email" id="Email" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    
+
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12 form-group">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                    <input asp-for="Subject" type="text" class="form-control" name="Subject" id="Subject" placeholder="Subject">
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+
                   </div>
                 </div>
                 <div class="row">
