@@ -11,6 +11,8 @@ namespace Jumia_MVC.Controllers
     {
         private readonly IProductsService _productsService;
 
+        public IEnumerable<Product> FilterList;
+
         public ProductController(IProductsService productsService)
         {
             _productsService = productsService;
@@ -18,10 +20,10 @@ namespace Jumia_MVC.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var res=await _productsService.GellAll(e=>e.Category);
-            if (res == null) return View("NotFound");
+            FilterList = await _productsService.GellAll(e=>e.Category);
+            if (FilterList == null) return View("NotFound");
 
-            return View(res);
+            return View(FilterList);
         }
 
         [HttpGet]
@@ -76,6 +78,15 @@ namespace Jumia_MVC.Controllers
 
             return View("Index", allProducts);
         }
+
+        //Filter Products
+        public async Task<IActionResult> FilterProducts(int category_id)
+        {
+            var allProducts = await _productsService.GellAll(p => p.Category);
+            FilterList = allProducts.Where(a => a.CategoryId == category_id || category_id == 0).ToList();
+            return View("Index", FilterList);
+        }
+
 
     }
 }

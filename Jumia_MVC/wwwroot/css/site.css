@@ -181,10 +181,18 @@ body {
         object-fit: cover;
     }*/
 
-
-
-
-
 .mt-6{
     margin-top:5rem;
+}
+
+.cont {
+    margin: 3rem 2px;
+}
+
+.type_card>a{
+    display:block;
+    text-decoration:none;
+    color:gray;
+    margin-top:10px;
+
 }
