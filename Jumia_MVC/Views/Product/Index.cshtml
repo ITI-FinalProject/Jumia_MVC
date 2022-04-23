@@ -19,7 +19,7 @@
 
             
               <a asp-action="Details"   asp-route-id="@item.Id">
-               <img src="@item.Image"  class="card-img-top img-fluid rounded" />
+               <img src="@item.Image"  class="card-img-top img-fluid rounded" style="height:300px"/>
               </a>
                @*     <a href="@Url.Action("Details")" id="@item.Id">
                  <img src="@Url.Content(@item.Image)" class="card-img-top img-fluid rounded" />
@@ -43,11 +43,11 @@
                 </h5>
               </div>
                  <div class="styleprice">
-                <p class="card-text text-muted">@item.Price </p>
+                <p class="card-text text-muted">@item.Price.ToString("c") </p>
                                 @if (item.Discount !=0)
                                 {
                                      <p class="card-text text-danger text-decoration-line-through">
-                                           @item.Old_Price
+                                           @item.Old_Price.ToString("c")
                                         </p>
                                 }         else
                                     {

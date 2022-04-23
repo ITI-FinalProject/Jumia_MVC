@@ -1,5 +1,5 @@
 ﻿ <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow  fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow  fixed-top justify-content-between">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/image/logo.png" />
@@ -23,8 +23,19 @@
                             <a class="nav-link text-dark" asp-area="" >About Us</a>
                    
                     </ul>
+
+                     <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Filter" style="padding-right: 25px;">
+                        <input name="searchString" type="text" class="form-control" placeholder="Search for a Products...">
+@*                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+*@                   </form>
+
+
                     <partial name="IdentityView.cshtml" />
                 </div>
             </div>
         </nav>
+
+
+ 
+
     </header>
