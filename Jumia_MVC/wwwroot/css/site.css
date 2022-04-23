@@ -16,3 +16,175 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.carousel-item > img {
+    height: 100vh
+}
+
+/*home style*/
+.stylenave > img {
+    height: 70vh;
+    width: 100%;
+}
+
+.card {
+    margin: .5rem;
+}
+
+/*// .style_card {
+    // display: flex;
+    // flex-direction: row;
+    //*/
+
+/*}
+*/
+.card > img, .card > .card-img-overlay {
+/*    // opacity: .7;
+*/    height: 400px;
+    padding: 1rem;
+    transition: 1s;
+}
+
+.card:hover .stylealert {
+    opacity: 1;
+}
+
+.card > img:hover, .card > .card-img-overlay:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+
+.styleprice {
+    display: flex;
+    justify-content: space-evenly;
+
+
+}
+    .styleprice > p {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+.stylealert {
+    width: 100%;
+    margin: 0px;
+    font-size: 23px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    transition: all 1s;
+}
+
+.style_showmore {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+
+
+}
+    .style_showmore> span {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+.style_showmore>button {
+    border-radius: 1rem;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+
+.iconstyle {
+    width: 100px;
+    background-color: #F6F6F6;
+    text-align: start;
+    padding: 1rem;
+    display: flex;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.style_card_body {
+    border: none;
+    padding: 1rem;
+    margin: 1rem;
+    color: rgb(168, 47, 47);
+}
+
+.styleBanner {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+}
+.styleBanner > div {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    top: 50%;
+    color: white;
+    font-size: 20px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    border: none;
+    text-align: center;
+    
+}
+.styleBanner > div>button {
+    border-radius: 2rem;
+    background-color: orange;
+    border: none;
+}
+    .styleBanner > div >input {
+        border-radius: 2rem;
+        padding: 1rem;
+        border: none;
+    }
+.styleBanner>img {
+    opacity: 0.8;
+}
+/* swiper
+*/
+.swiper-slide {
+    text-align: left;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+   /* .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }*/
+
+
+
+
+
+.mt-6{
+    margin-top:5rem;
+}

@@ -1,8 +1,356 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-}
+     var banner = ViewBag.banner;
+     var product = ViewBag.product;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+}
+ 
+<div class="container-fluid g-0 m-0">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @{
+            var first = true;
+        }
+        @foreach (var item in ViewBag.banner)
+        {
+            <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))" >
+                <img class="d-block w-100" src="@item.Image" alt="....." height="100" width="100%">
+            </div>
+            first = false;
+        }
+    </div>
+     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
 </div>
+</div>
+
+<div class="col-12 style_showmore px-3">
+  <span>Selected Just For You</span>
+  <button>Show More</button>
+</div>
+
+  <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+         
+            @foreach( var item in product)
+            {
+            @if (item.CategoryId == 1)
+            {
+                   <div class="col-md-3 swiper-slide">
+              <div class="card card-border-none resp-wrap-align-center">
+              <a  asp-action="Details"  asp-controller="Product"  asp-route-id="@item.Id">
+                <img  src="@item.Image"
+               class="card-img-top img-fluid rounded"
+               alt="..."
+               (click)="goToProductDetails(item)" />
+              </a>
+
+                        @if (item.Discount!=0)
+                        {
+                          <div class="card-img-overlay"
+                          (click)="goToProductDetails(item)" >
+                          <span class="mx-2 text-light p-1 bg-danger text-white" >Discount</span ></div>
+                        }
+
+               <div class="card-body">
+                <div class="overflow-hidden">
+                <h5
+                  class="card-title fs-6 d-inline-block text-truncate font-monospace text-start text-primary" >
+                  @item.Name
+                </h5>
+              </div>
+                 <div class="styleprice">
+                <p class="card-text text-muted">@item.Price </p>
+                                @if (item.Discount !=0)
+                                {
+                                     <p class="card-text text-danger text-decoration-line-through">
+                                           @item.Old_Price
+                                        </p>
+                                }         else
+                                    {
+                                        <p></p>
+                                    }
+                                   
+           
+             
+                         </div>
+              </div>
+               <div class="alert alert-dark stylealert">
+              <button
+                style="border: none; background-color: #d3d3d4"
+                (click)="addToCart(item)">
+                <i class="fas fa-cart-plus text-primary"></i>
+              </button>
+             @* <i *ngIf="!addToFavourit"
+                class="far fa-heart text-primary"
+                (click)="addtofav(item)" ></i>*@
+              <i *ngIf="addToFavourit"
+                class="fas fa-heart text-primary"
+                (click)="removeItemFav(item)"></i>
+            </div>
+
+
+
+               </div> 
+               </div>
+            }
+ 
+            }
+         </div>
+
+        <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> 
+   </div>
+
+   <div class="col-12 style_showmore px-3">
+  <span>Selected Just For You</span>
+  <button>Show More</button>
+</div>
+
+   <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+         
+            @foreach( var item in product)
+            {
+            @if (item.CategoryId == 3)
+            {
+                   <div class="col-md-3 swiper-slide">
+              <div class="card card-border-none resp-wrap-align-center">
+               <img  src="@item.Image"
+               class="card-img-top img-fluid rounded"
+               alt="..."
+               (click)="goToProductDetails(item)" />
+
+                        @if (item.Discount!=0)
+                        {
+                          <div class="card-img-overlay"
+                          (click)="goToProductDetails(item)" >
+                          <span class="mx-2 text-light p-1 bg-danger text-white" >Discount</span ></div>
+                        }
+
+               <div class="card-body">
+                <div class="overflow-hidden">
+                <h5
+                  class="card-title fs-6 d-inline-block text-truncate font-monospace text-start text-primary" >
+                  @item.Name
+                </h5>
+              </div>
+                 <div class="styleprice">
+                <p class="card-text text-muted">@item.Price </p>
+                                @if (item.Discount !=0)
+                                {
+                                     <p class="card-text text-danger text-decoration-line-through">
+                                           @item.Old_Price
+                                        </p>
+                                }         else
+                                    {
+                                        <p></p>
+                                    }
+                                   
+           
+             
+                         </div>
+              </div>
+               <div class="alert alert-dark stylealert">
+              <button
+                style="border: none; background-color: #d3d3d4"
+                (click)="addToCart(item)">
+                <i class="fas fa-cart-plus text-primary"></i>
+              </button>
+            @*  <i *ngIf="!addToFavourit"
+                class="far fa-heart text-primary"
+                (click)="addtofav(item)" ></i>*@
+              <i *ngIf="addToFavourit"
+                class="fas fa-heart text-primary"
+                (click)="removeItemFav(item)"></i>
+            </div>
+
+
+
+               </div> 
+               </div>
+            }
+ 
+            }
+         </div>
+
+        <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> 
+   </div>
+
+ <div class="container-fluid">
+  <div class="row g-0 my-5" id="our">
+    <h2 class="text-center text-uppercase col-12 my-5">
+      Why should you choose us?
+    </h2>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card-body style_card_body">
+        <div class="text-start">
+          <div class="iconstyle card-title">
+            <i class="fa-solid fa-truck-fast fa-3x card-img-top text-start"></i>
+          </div>
+          <h4 class="text-uppercase card-subtitle my-2">Free Shipping</h4>
+          <p class="card-text text-secondary">
+            All purchases over $399 are eligible for free shipping via UPS Pack
+            and Ship.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card-body style_card_body">
+        <div class="text-start">
+          <div class="iconstyle card-title">
+            <i
+              class="fa-solid fa-credit-card fa-3x card-img-top text-start"
+            ></i>
+          </div>
+          <h4 class="text-uppercase card-subtitle my-2">Easy Payments</h4>
+          <p class="card-text text-secondary">
+            All payments are processed instantly over a secure payment protocol.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card-body style_card_body">
+        <div class="text-start">
+          <div class="iconstyle card-title">
+            <i
+              class="fa-solid fa-hand-holding-dollar fa-3x card-img-top text-start"
+            ></i>
+          </div>
+          <h4 class="text-uppercase card-subtitle my-2">
+            Money-Back Guarantee
+          </h4>
+          <p class="card-text text-secondary">
+            If an item arrived damaged or you've changed your mind, you can send
+            it back for a full refund.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card-body style_card_body">
+        <div class="text-start">
+          <div class="iconstyle card-title">
+            <i class="fa-solid fa-clone fa-3x card-img-top text-center"></i>
+          </div>
+          <h4 class="text-uppercase card-subtitle my-2">Finest Quality</h4>
+          <p class="card-text text-secondary">
+            Designed to last, each of our products has been crafted with the
+            finest materials.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12 style_showmore px-3">
+  <span>Selected Just For You</span>
+  <button>Show More</button>
+</div>
+
+<div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+         
+            @foreach( var item in product)
+            {
+            @if (item.CategoryId == 5)
+            {
+                   <div class="col-md-3 swiper-slide">
+              <div class="card card-border-none resp-wrap-align-center">
+               <img  src="@item.Image"
+               class="card-img-top img-fluid rounded"
+               alt="..."
+               (click)="goToProductDetails(item)" />
+
+                        @if (item.Discount!=0)
+                        {
+                          <div class="card-img-overlay"
+                          (click)="goToProductDetails(item)" >
+                          <span class="mx-2 text-light p-1 bg-danger text-white" >Discount</span ></div>
+                        }
+
+               <div class="card-body">
+                <div class="overflow-hidden">
+                <h5
+                  class="card-title fs-6 d-inline-block text-truncate font-monospace text-start text-primary" >
+                  @item.Name
+                </h5>
+              </div>
+                 <div class="styleprice">
+                <p class="card-text text-muted">@item.Price </p>
+                                @if (item.Discount !=0)
+                                {
+                                     <p class="card-text text-danger text-decoration-line-through">
+                                           @item.Old_Price
+                                        </p>
+                                }         else
+                                    {
+                                        <p></p>
+                                    }
+                                   
+           
+             
+                         </div>
+              </div>
+               <div class="alert alert-dark stylealert">
+              <button
+                style="border: none; background-color: #d3d3d4"
+                (click)="addToCart(item)">
+                <i class="fas fa-cart-plus text-primary"></i>
+              </button>
+             @* <i *ngIf="!addToFavourit"
+                class="far fa-heart text-primary"
+                (click)="addtofav(item)" ></i>*@
+              <i *ngIf="addToFavourit"
+                class="fas fa-heart text-primary"
+                (click)="removeItemFav(item)"></i>
+            </div>
+
+
+
+               </div> 
+               </div>
+            }
+ 
+            }
+         </div>
+
+        <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div> 
+   </div>
+
+
+
+
+         
+            
+           
+
+@section Scripts{
+ <script>
+      var swiper = new Swiper(".mySwiper", {
+          slidesPerView: 3,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+}
+           
+          
