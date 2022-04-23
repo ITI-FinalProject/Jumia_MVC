@@ -79,5 +79,8 @@
   </div>
 </div>
 
+@if (User.IsInRole("Admin"))
+{
+    @await Html.PartialAsync("CustomButton","Product")
 
-@await Html.PartialAsync("CustomButton","Product")
+}
