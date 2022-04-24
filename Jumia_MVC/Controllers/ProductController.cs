@@ -11,7 +11,7 @@ namespace Jumia_MVC.Controllers
     {
         private readonly IProductsService _productsService;
 
-        public IEnumerable<Product> FilterList;
+        private IEnumerable<Product> FilterList;
 
         public ProductController(IProductsService productsService)
         {
@@ -68,6 +68,75 @@ namespace Jumia_MVC.Controllers
             return View(res);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var res = await _productsService.GetProductByIdAsync(id);
+            if (res == null) return View("NotFound");
+            var respone = new ProductVM()
+            {
+                Price = res.Price,
+                Discount = res.Discount,
+                Image = res.Image,
+                Name = res.Name,
+                Id = res.Id,
+                Description = res.Description,
+                Old_Price = res.Old_Price,
+                Quentity = res.Quentity,
+
+            };
+            var movieDropData = await _productsService.GetProductDropDownVM();
+            ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+            return View(respone);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, ProductVM productVM)
+        {
+            if (id != productVM.Id) return View("NotFound");
+
+            if (ModelState.IsValid)
+            {
+                await _productsService.UpdatedProductAsync(productVM);
+                return RedirectToAction(nameof(Index));
+            }
+            var movieDropData = await _productsService.GetProductDropDownVM();
+            ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+            return View(productVM);
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id == null)
+            {
+                return View("NotFound");
+
+            }
+            var res = await _productsService.GetProductByIdAsync(id);
+            if (res == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                return View(res);
+            }
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirm(int id)
+        {
+            if (id == null)
+            {
+                return View("NotFound");
+            }
+
+            var res = await _productsService.GetProductByIdAsync(id);
+            await _productsService.delete(res);
+            return RedirectToAction(nameof(Index));
+
+        }
 
         //Filter
         [AllowAnonymous]

@@ -50,8 +50,25 @@ namespace FinalProject.MVC.Data.services.Products
             return res;
         }
 
-      
+        public async Task UpdatedProductAsync(ProductVM entity)
+        {
+            var dbproduct = await _context.Products.FirstOrDefaultAsync(n => n.Id == entity.Id);
 
+            if (dbproduct != null)
+            {
+                dbproduct.Quentity = entity.Quentity;
+                dbproduct.Old_Price = entity.Old_Price;
+                dbproduct.Price = entity.Price;
+                dbproduct.CategoryId = entity.CategoryId;
+                dbproduct.Description=entity.Description;
+                dbproduct.Name=entity.Name;
+                dbproduct.Discount=entity.Discount;
+                dbproduct.Image = entity.Image;
 
+                await _context.SaveChangesAsync();
+                
+            }
+
+        }
     }
 }
