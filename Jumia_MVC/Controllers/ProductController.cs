@@ -19,12 +19,20 @@ namespace Jumia_MVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            var movieDropData = await _productsService.GetProductDropDownVM();
+            ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
 
             FilterList = await _productsService.GellAll(e=>e.Category);
             if (FilterList == null) return View("NotFound");
 
             return View(FilterList);
         }
+        //[HttpPost]
+        //public async Task<IActionResult> Index(int id)
+        //{
+
+        //}
+
 
         [HttpGet]
         public async Task<IActionResult> Create()
@@ -80,11 +88,19 @@ namespace Jumia_MVC.Controllers
         }
 
         //Filter Products
-        public async Task<IActionResult> FilterProducts(int category_id)
+        public async Task<IActionResult> FilterProducts( int CategoryId)
         {
             var allProducts = await _productsService.GellAll(p => p.Category);
-            FilterList = allProducts.Where(a => a.CategoryId == category_id || category_id == 0).ToList();
-            return View("Index", FilterList);
+            var movieDropData = await _productsService.GetProductDropDownVM();
+            ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+          
+
+            if (CategoryId == null) return View("Index", allProducts);
+
+       
+            var submitFilter = allProducts.Where(e => e.CategoryId == CategoryId).ToList();
+           // FilterList = allProducts.Where(a => a.Category.Id == CategoryId ).ToList();
+            return View("Index", submitFilter);
         }
 
 

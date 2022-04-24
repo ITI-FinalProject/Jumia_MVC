@@ -8,12 +8,33 @@
         <div class="card ">
             <div class="card-body type_card">
                 <h2 class="card-title">Product Type</h2>
-                <a class="card-text" asp-action="FilterProducts" asp-route-id= "0" >All Products</a>
+                <form  asp-action="FilterProducts" asp-controller="Product">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                           <div class="form-group">
+                                <label  class="control-label">Category :</label>
+                                <select  name="CategoryId"  class="form-control" asp-items="ViewBag.Category"></select>
+@*                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+*@                            </div>
+                                  <div class="form-group mt-2">
+                                <label  class="control-label">Discount :</label>
+                               <input type="checkbox" name="check" />
+@*                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+*@                            </div>
+                             <div class="form-group mt-4">
+                        <input type="submit" value="Submit" class="btn btn-outline-success float-right" />
+                       <a class="btn btn-outline-info" asp-action="Index">Defult</a>
+
+                    </div>
+
+                  </form>
+         
+        @*      <a class="card-text" asp-action="FilterProducts" asp-route-id= "0" >All Products</a>
                 <a class="card-text" asp-action="FilterProducts" asp-route-id= "1">Electrionic Devices</a>
-                <a class="card-text" asp-action="FilterProducts" asp-route-id= "1">Prevent Corona</a>
-                <a class="card-text" asp-action="FilterProducts" asp-route-id= "5">Sports</a>
-                <a class="card-text" asp-action="FilterProducts" asp-route-id= "1">Lighting</a>
-                <a class="card-text" asp-action="FilterProducts" asp-route-id= "3">Clothes</a>
+                <a class="card-text" asp-action="FilterProducts" asp-route-id= "2">Prevent Corona</a>
+                <a class="card-text" asp-action="FilterProducts" asp-route-id= "3">Sports</a>
+                <a class="card-text" asp-action="FilterProducts" asp-route-id= "4">Lighting</a>
+                <a class="card-text" asp-action="FilterProducts" asp-route-id= "5">Clothes</a>*@
             </div>
         </div>
     </div>
