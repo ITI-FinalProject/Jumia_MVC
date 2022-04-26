@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Localization
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+@inject Microsoft.Extensions.Options.IOptions<RequestLocalizationOptions> locOPtions;
+
+@{
+    var culture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureList = locOPtions.Value.SupportedCultures.Select(x => new SelectListItem{Value = x.Name, Text = localizer.GetString(x.Name)}).ToList();
+    var returnUrl = string.IsNullOrWhiteSpace(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
+}
+<style>
+    select{
+        margin-top:4px;
+        border:none;
+        padding:4px;
+    }
+
+</style>
+
+<div>
+    <form asp-action="CultureManagement" asp-controller="Home" method="post" asp-route-returnUrl ="@returnUrl">
+        <select name="culture" asp-for="@culture.RequestCulture.UICulture.Name" asp-items="cultureList" 
+        onchange="this.form.submit();" ></select>
+    </form>
+</div>

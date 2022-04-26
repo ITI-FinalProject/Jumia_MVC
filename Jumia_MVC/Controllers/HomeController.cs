@@ -1,7 +1,9 @@
 ﻿using FinalProject.MVC.Data.services;
 using FinalProject.MVC.Data.services.Products;
 using Jumia_MVC.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using System.Diagnostics;
 using System.Dynamic;
 
@@ -12,9 +14,6 @@ namespace Jumia_MVC.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProductsService _productsService;
         private readonly IBannerService _bannerService;
-
-
-
 
         public HomeController(ILogger<HomeController> logger, IProductsService productsService, IBannerService bannerService)
         {
@@ -30,6 +29,12 @@ namespace Jumia_MVC.Controllers
             ViewBag.product =await _productsService.GellAll(e => e.Category);
 
             return View();
+        }
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddMonths(3) });
+            return LocalRedirect(returnUrl);
         }
 
         public IActionResult Privacy()

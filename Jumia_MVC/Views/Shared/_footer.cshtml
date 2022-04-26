@@ -1,59 +1,52 @@
-﻿<footer class="container-fluid mt-5   border-top footer text-muted ">
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
+<footer class="container-fluid mt-5   border-top footer text-muted ">
     <div class="row ">
   
-     <div class="col-md-3 col-12 my-3"> 
-       <h3 class="text-start text-uppercase text-dark fw-bold"> 
-         <img src="~/image/logo.png"> <span class=" mx-1 text-warning">E-</span>SHOPE</h3>
-        <p class="text-secondary">
-          House My Brand designs clothing for the young, the old &
-  everyone in between – but most importantly, for the fashionable
-        </p>
+        <div class="col-md-3 col-12 my-3"> 
+            <h3 class="text-start text-uppercase text-dark fw-bold"> 
+            <img src="~/image/logo.png"> <span class=" mx-1 text-warning">E-</span>SHOPE</h3>
+            <p class="text-secondary">
+                @localizer["footerDescription"]
+            </p>
             <div class="my-3   d-flex justify-content-around ">
-               <i class="fa-brands fa-facebook fa-2x text-secondary"></i>
-                 <i class="fa-brands fa-twitter fa-2x text-secondary"></i>
-                 <i class="fa-brands fa-instagram fa-2x text-secondary"></i>
-                 <i class="fa-brands fa-youtube fa-2x text-secondary"></i>
-  
-  
+                <i class="fa-brands fa-facebook fa-2x text-secondary"></i>
+                <i class="fa-brands fa-twitter fa-2x text-secondary"></i>
+                <i class="fa-brands fa-instagram fa-2x text-secondary"></i>
+                <i class="fa-brands fa-youtube fa-2x text-secondary"></i>
               </div>
-     </div>
-    
+        </div>
+   
+        <div class="col-12 col-md-3 my-3"> 
+            <h3 class="text-start text-uppercase text-dark fw-bold"> @localizer["Navigation"]</h3>
+            <ul class="list-group">
+                <li class="list-group-item-action text-secondary">@localizer["Home"] </li>
+                <li class=" list-group-item-action text-secondary">@localizer["OurService"] </li>
+                <li class="list-group-item-action text-secondary">@localizer["Feadback"]</li>
+                <li class="list-group-item-action text-secondary ">@localizer["request"]</li>
+            </ul>
+        </div>
   
-     <div class="col-12 col-md-3 my-3"> 
-       <h3 class="text-start text-uppercase text-dark fw-bold"> Navigation</h3>
-       <ul class="list-group">
-         <li class="list-group-item-action text-secondary">Home</li>
-         <li class=" list-group-item-action text-secondary"> Our Service</li>
-         <li class="list-group-item-action text-secondary">Feadback</li>
-         <li class="list-group-item-action text-secondary ">Features vulputate neque nec sem</li>
-       </ul>
-     </div>
+        <div class="col-12 col-md-3 my-3 "> 
+            <h3 class="text-start text-uppercase text-dark fw-bold"> @localizer["More"]</h3>
+            <ul class="list-group">
+                <li class="list-group-item-action text-secondary">@localizer["FAQ`S"] </li>
+                <li class="list-group-item-action text-secondary">@localizer["Privacy"] </li>
+                <li class="list-group-item-action -text-secondary">@localizer["Liscences"] </li>
   
-     <div class="col-12 col-md-3 my-3 "> 
-       <h3 class="text-start text-uppercase text-dark fw-bold"> More</h3>
-       <ul class="list-group">
-         <li class="list-group-item-action text-secondary">FAQ`S</li>
-         <li class="list-group-item-action text-secondary">Privacy & Poilcy</li>
-         <li class="list-group-item-action -text-secondary">Liscences</li>
+            </ul>
+        </div>
   
-       </ul>
-     </div>
-  
-     <div class="col-12 col-md-3 my-3 text-dark "> 
-       <h3 class="text-start text-uppercase fw-bold"> Contact</h3>
-       <ul class="list-group">
-  
-         <li class="list-group-item-action text-secondary">abdo18 </li>
-         <li class="list-group-item-action text-secondary">streat 3456 mansoura </li>
-         <li class="list-group-item-action text-secondary">(20)3353132424</li>
-         <li class="list-group-item-action text-secondary">test@yahoo.com</li>
-  
-  
-  
-  
-       </ul> 
-     </div>
+        <div class="col-12 col-md-3 my-3 text-dark "> 
+            <h3 class="text-start text-uppercase fw-bold">@localizer["Contact"] </h3>
+            <ul class="list-group">
+                <li class="list-group-item-action text-secondary">abdo18 </li>
+                <li class="list-group-item-action text-secondary">streat 3456 mansoura </li>
+                <li class="list-group-item-action text-secondary">(20)3353132424</li>
+                <li class="list-group-item-action text-secondary">test@yahoo.com</li>
+            </ul> 
+        </div>
   
     </div>
   
-  </footer> 
+</footer> 
