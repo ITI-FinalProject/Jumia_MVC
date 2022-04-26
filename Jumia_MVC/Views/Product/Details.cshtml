@@ -72,30 +72,90 @@
 						
 						<div class="preview-pic tab-content">
 						  <div class="tab-pane active" id="pic-1"><img src="@Model.Image" width="100%" height="450px" alt="@Model.Name"/></div>
+
+
 @*						  <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
 						  <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
 						  <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
 						  <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>*@
 						</div>
 						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="@Model.Image" /></a></li>
+                        @for(int i = 0; i < @Model.Images.Count(); i++)
+                        {
+                            <li><a data-target="#pic-2" data-toggle="tab"><img src="@Model.Images[i].URL" height="100px" /></a></li>
+                        }
+
+
+                       @* <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="@Model.Images[0].URL" /></a></li>
 						  <li><a data-target="#pic-2" data-toggle="tab"><img src="@Model.Image" /></a></li>
 						  <li><a data-target="#pic-3" data-toggle="tab"><img src="@Model.Image" /></a></li>
 						  <li><a data-target="#pic-4" data-toggle="tab"><img src="@Model.Image" /></a></li>
-						  <li><a data-target="#pic-5" data-toggle="tab"><img src="@Model.Image" /></a></li>
+						  <li><a data-target="#pic-5" data-toggle="tab"><img src="@Model.Image" /></a></li>*@
 						</ul>
 						
 					</div>
 					<div class="details col-md-6 mt-3">
 						<h3 class="product-title">@Model.Name</h3>
+                        <h1></h1>
 						<div class="rating">
 							<div class="stars">
+                            @if (Model.Rate == 0)
+                            {
+                                <span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star "></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+                            }
+                            @if (Model.Rate == 1)
+                            {
+                                <span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star "></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+                            }
+                            @if(Model.Rate ==2)
+                            {
+                                <span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star "></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+                            }
+                            @if(Model.Rate ==3)
+                            {
+                                <span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star checked"></span>
 								<span class="fa fa-star"></span>
 								<span class="fa fa-star"></span>
-							</div>
+                            }
+                            @if(Model.Rate ==4)
+                            {
+                                <span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+                            }
+                            @if(Model.Rate ==5)
+                            {
+                                <span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+                            }
+                            
+                            
+                            </div>
+                            @*<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>*@
 							<span class="review-no">41 reviews</span>
 						</div>
 						
@@ -139,7 +199,7 @@
 		</div>
 
         <div class="col-12 style_showmore px-3">
-  <span>Selected Just For You</span>
+  <span>Related Products</span>
   <button>Show More</button>
 </div>
 
@@ -148,11 +208,11 @@
          
             @foreach( var item in ViewBag.product)
             {
+                
             @if (item.CategoryId == Model.CategoryId)
             {
                    <div class="col-md-3 swiper-slide">
               <div class="card card-border-none resp-wrap-align-center">
-               
                <img  src="@item.Image"
                class="card-img-top img-fluid rounded"
                alt="..."
@@ -229,6 +289,7 @@
 
     @section Scripts{
  <script>
+
       var swiper = new Swiper(".mySwiper", {
           slidesPerView: 3,
         spaceBetween: 30,
@@ -237,5 +298,6 @@
           prevEl: ".swiper-button-prev",
         },
       });
+        
     </script>
 }
