@@ -7,6 +7,8 @@ using FinalProject.MVC.Data.services.Banners;
 using FinalProject.MVC.Data.services.Categores;
 using FinalProject.MVC.Data.services.Products;
 using Jumia_MVC.Data;
+using Jumia_MVC.Data.Cart;
+using Jumia_MVC.Data.services;
 using Jumia_MVC.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -27,6 +29,10 @@ builder.Services.AddDbContext<ApplicationDBContext>(
 builder.Services.AddScoped<IBannerService, BannerService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductsService, ProductsService>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
 //add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

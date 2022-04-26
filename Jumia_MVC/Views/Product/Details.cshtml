@@ -196,12 +196,18 @@
              
                          </div>
               </div>
+              //Addto cart button
                <div class="alert alert-dark stylealert">
-              <button
+             @* <button
                 style="border: none; background-color: #d3d3d4"
                 (click)="addToCart(item)">
                 <i class="fas fa-cart-plus text-primary"></i>
-              </button>
+              </button>*@
+               <a class="btn btn-success text-white " 
+                                   asp-controller="Orders" 
+                                   asp-action="AddItemToShoppingCart" 
+                                   asp-route-id="@Model.Id">
+                                <i class="fas fa-cart-plus text-primary"></i> Add to Cart (Price @item.Price.ToString("c"))</a>
              
               <i
                 class="fas fa-heart text-primary"
