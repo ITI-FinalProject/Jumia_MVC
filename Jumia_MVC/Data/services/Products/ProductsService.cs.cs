@@ -45,8 +45,8 @@ namespace FinalProject.MVC.Data.services.Products
 
        public async Task<Product>  GetProductByIdAsync(int id)
         {
-            var res = await _context.Products.Include(e => e.Category)
-                                  .FirstOrDefaultAsync(e => e.Id == id);
+            var res = await _context.Products.Include(e => e.Category).Include(x => x.Images)
+                                .FirstOrDefaultAsync(e => e.Id == id);
             return res;
         }
 

@@ -22,6 +22,8 @@ namespace Jumia_MVC.Models
         public double Price { get; set; }
         public double Old_Price { get; set; }
         public int Discount { get; set; }
+        [Range(0, 5)]
+        public int Rate { get; set; }
 
         public int Quentity { get; set; }
 
