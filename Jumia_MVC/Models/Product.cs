@@ -48,5 +48,9 @@ namespace Jumia_MVC.Models
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public virtual List<Sizes>? Sizes { get; set; }
+
+        public virtual List<Colors>? Colors { get; set; }
     }
 }
