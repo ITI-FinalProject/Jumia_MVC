@@ -26,6 +26,7 @@ namespace FinalProject.MVC.Data.services.Products
                 Description = entity.Description,
                 Quentity = entity.Quentity,
                 CategoryId = entity.CategoryId,
+                Rate = entity.Rate,
 
             };
             await _context.Products.AddAsync(newProduct);
@@ -37,7 +38,7 @@ namespace FinalProject.MVC.Data.services.Products
             var res = new ProductDropDownVM()
             {
                 Categories = await _context.Categorys.OrderBy(e => e.Name).ToListAsync(),
-               
+                
             };
             return res;
         }
