@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <div class="alert alert-dark stylealert">
-                                <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                                <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" onclick="return confirm('success Product Add in Cart ');">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
 
                                 <i *ngIf="addToFavourit"

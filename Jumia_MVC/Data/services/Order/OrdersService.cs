@@ -12,6 +12,18 @@ namespace Jumia_MVC.Data.services
             _context = context;
         }
 
+        public async Task<List<Order>> GetOrderByUserIdAndRoleAsync(string UserId, string userRole)
+        {
+            var order = await _context.Orders.Include(e => e.OrderItems).ThenInclude(tc => tc.Product)
+                                                 .Include(u => u.User).ToListAsync();
+            if (userRole != "Admin")
+            {
+                order = order.Where(e => e.UserId == UserId).ToList();
+
+            }
+            return order;
+        }
+
         public async Task<List<Order>> GetOrdersByUserIdAsync(string userId)
         {
             var order = await _context.Orders.Include(n => n.OrderItems).

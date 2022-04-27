@@ -89,7 +89,11 @@
               </div>
                <div class="alert alert-dark stylealert">
                    @*// cart btn*@
-            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                     @* @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                    {
+                        <th>User</th>
+                    }*@
+                    <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" onclick="return confirm('success Product Add in Cart ');">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
              @* <i *ngIf="!addToFavourit"
                 class="far fa-heart text-primary"
@@ -168,7 +172,7 @@
                             </div>
                         </div>
                         <div class="alert alert-dark stylealert">
-                            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" onclick="return confirm('success Product Add in Cart ');">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
                             <i class="fas fa-heart text-primary"></i>
                         </div>
@@ -311,7 +315,7 @@
                 (click)="addToCart(item)">
                 <i class="fas fa-cart-plus text-primary"></i>
               </button>*@
-               <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" onclick="return confirm('success Product Add in Cart ');">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
             @*  <i *ngIf="!addToFavourit"
                 class="far fa-heart text-primary"

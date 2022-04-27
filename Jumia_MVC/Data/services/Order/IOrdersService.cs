@@ -7,5 +7,7 @@ namespace Jumia_MVC.Data.services
         Task StoreOrderAsync(List<ShoppingCartItem> items, string userId, string userEmailAddress);
 
         Task<List<Order>> GetOrdersByUserIdAsync(string userId);
+        Task<List<Order>> GetOrderByUserIdAndRoleAsync(string UserId, string userRole);
+
     }
 }

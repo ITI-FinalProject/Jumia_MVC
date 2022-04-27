@@ -198,7 +198,7 @@
                         }
 
                         <div class="action">
-                            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" class="add-to-cart btn btn-default">add to cart</a >
+                            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" onclick="return confirm('success Product Add in Cart ');" class="add-to-cart btn btn-default">add to cart</a >
 @*							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
 *@							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
 						</div>

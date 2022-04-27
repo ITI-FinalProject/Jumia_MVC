@@ -2,7 +2,10 @@
 using Jumia_MVC.Data.Cart;
 using Jumia_MVC.Data.services;
 using Jumia_MVC.Data.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using UseScaffold.Custom_Filter;
 
 namespace Jumia_MVC.Controllers
 {
@@ -22,13 +25,14 @@ namespace Jumia_MVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            string userId = "";
-         
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
 
-            var orders = await _ordersService.GetOrdersByUserIdAsync(userId);
-            return View(orders);
+            var order = await _ordersService.GetOrderByUserIdAndRoleAsync(userId, userRole);
+            return View(order);
 
         }
+        [MyAuthorize]
         public IActionResult ShoppingCart()
         {
             var item = _shoppingCart.GetShoppingCartItems();
@@ -41,7 +45,7 @@ namespace Jumia_MVC.Controllers
         };
             return View(response);
         }
-
+        [MyAuthorize]
         public  async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var item = await _productsService.GetProductByIdAsync(id);
@@ -50,7 +54,7 @@ namespace Jumia_MVC.Controllers
             {
                 _shoppingCart.AddItemToCart(item);
             }
-            return RedirectToAction(nameof(ShoppingCart));
+            return RedirectToAction("Index", "Home");
         } 
         //remove items
 
@@ -67,13 +71,15 @@ namespace Jumia_MVC.Controllers
         // Complet Order
         public async Task<IActionResult> CompletOrder()
         {
+        
+
             var items = _shoppingCart.GetShoppingCartItems();
 
-            string UserId = "" ;
-            string userEmailAddress = "";
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userEmailAdddress = User.FindFirstValue(ClaimTypes.Email);
 
 
-            await _ordersService.StoreOrderAsync(items, UserId, userEmailAddress);
+            await _ordersService.StoreOrderAsync(items, userId, userEmailAdddress);
             await _shoppingCart.ClearShoppingCartAsync();
 
             return View("OrderCompleted");
