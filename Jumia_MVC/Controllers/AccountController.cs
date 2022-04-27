@@ -2,6 +2,7 @@
 using FinalProject.MVC.Data.ViewModel;
 using Jumia_MVC.Models;
 using Jumia_MVC.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -106,6 +107,7 @@ namespace Jumia_MVC.Controllers
 
         }
 
+    
 
     }
 }

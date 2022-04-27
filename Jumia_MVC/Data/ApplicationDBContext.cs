@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Jumia_MVC.Models.Account;
 
 namespace Jumia_MVC.Data
 {
@@ -38,6 +39,7 @@ namespace Jumia_MVC.Data
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public DbSet<Jumia_MVC.Models.Account.UserProfileModel> UserProfileModel { get; set; }
     }
 
 }
