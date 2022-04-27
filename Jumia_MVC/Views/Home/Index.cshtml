@@ -98,9 +98,11 @@
              @* <i *ngIf="!addToFavourit"
                 class="far fa-heart text-primary"
                 (click)="addtofav(item)" ></i>*@
+              <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
               <i *ngIf="addToFavourit"
                 class="fas fa-heart text-primary"
                 (click)="removeItemFav(item)"></i>
+                </a>
             </div>
 
                    </div> 
@@ -320,9 +322,11 @@
             @*  <i *ngIf="!addToFavourit"
                 class="far fa-heart text-primary"
                 (click)="addtofav(item)" ></i>*@
+              <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
               <i *ngIf="addToFavourit"
                 class="fas fa-heart text-primary"
                 (click)="removeItemFav(item)"></i>
+                </a>
             </div>
                     </div> 
                 </div>

@@ -39,5 +39,8 @@ namespace FinalProject.MVC.Data.ViewModel
 
         [Display(Name ="Category")]
         public int CategoryId { get; set; }
+
+        [Range(0, 5)]
+        public int Rate { get; set; }
     }
 }

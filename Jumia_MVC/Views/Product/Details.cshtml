@@ -71,7 +71,8 @@
 					<div class="preview col-md-6">
 						
 						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="@Model.Image" width="100%" height="450px" alt="@Model.Name"/></div>
+						  <div class="tab-pane active" id="pic-1"><img id="zoom_01" src="@Model.Image" data-zoom-image="@Model.Image" width="100%" height="450px" alt="@Model.Name"/></div>
+                          
 
 
 @*						  <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
@@ -83,8 +84,9 @@
                         @for(int i = 0; i < @Model.Images.Count(); i++)
                         {
                             <li><a data-target="#pic-2" data-toggle="tab"><img src="@Model.Images[i].URL" height="100px" /></a></li>
-                        }
 
+                            
+                        }
 
                        @* <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="@Model.Images[0].URL" /></a></li>
 						  <li><a data-target="#pic-2" data-toggle="tab"><img src="@Model.Image" /></a></li>
@@ -200,8 +202,10 @@
                         <div class="action">
                             <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" onclick="return confirm('success Product Add in Cart ');" class="add-to-cart btn btn-default">add to cart</a >
 @*							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-*@							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-						</div>
+*@                          <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@Model.Id">
+							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                            </a>						
+                        </div>
                     </div>
 
 	@*				<div class="col-xs-9 mt-5">
@@ -315,9 +319,12 @@
                                  asp-action="AddItemToShoppingCart" 
                                  asp-route-id="@item.Id">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
+
+              <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id">
               <i
                 class="fas fa-heart text-primary"
                 (click)="removeItemFav(item)"></i>
+              </a>
             </div>
             
 
@@ -350,6 +357,9 @@
           prevEl: ".swiper-button-prev",
         },
       });
+
+        $("#zoom_01").elevateZoom();
+      
         
     </script>
 }

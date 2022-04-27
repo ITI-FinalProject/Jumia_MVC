@@ -50,6 +50,7 @@ namespace Jumia_MVC.Controllers
         {
             var movieDropData = await _productsService.GetProductDropDownVM();
             ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+            
             return View();
 
         }
