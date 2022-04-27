@@ -4,6 +4,7 @@ namespace FinalProject.MVC.Data.ViewModel
 {
     public class ProductVM
     {
+        public int Id { get; set; }
 
         public ProductVM()
         {

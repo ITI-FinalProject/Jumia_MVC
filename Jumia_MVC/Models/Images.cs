@@ -9,11 +9,11 @@ namespace Jumia_MVC.Models
 {
     public class Images
     {
-       // public int Id { get; set; }
+        public int Id { get; set; }
         public string URL { get; set; }
 
         [ForeignKey("Product")]
         public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

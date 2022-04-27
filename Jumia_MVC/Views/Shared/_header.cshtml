@@ -35,6 +35,23 @@
 @*                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
 *@              </form>
 
+                    <ul class="nabar-nav">
+                        @await Component.InvokeAsync("ShoppingCatSummary")
+                    </ul>
+                     @*user profile section*@
+
+                  
+                     <div class="dropdown">
+                    <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                             Hello User  </a>
+
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item"asp-controller="Orders" asp-action="Index">
+                     <i class="bi bi-list"></i> Orders
+                     </a>
+                       </li>
+                           </ul>
+                     </div>
 
                 <partial name="IdentityView.cshtml" />
             </div>

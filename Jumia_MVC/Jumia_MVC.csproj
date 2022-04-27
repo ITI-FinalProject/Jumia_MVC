@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\services\Ordes\" />
     <Folder Include="wwwroot\staticPages\" />
   </ItemGroup>
 

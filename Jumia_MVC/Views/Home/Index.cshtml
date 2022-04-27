@@ -79,17 +79,27 @@
                                     </p>
                                 }
                                 else
-                                {
-                                    <p></p>
-                                }
-                            </div>
-                        </div>
-                        <div class="alert alert-dark stylealert">
-                            <button style="border: none; background-color: #d3d3d4">
-                                <i class="fas fa-cart-plus text-primary"></i>
-                            </button>
-                            <i class="fas fa-heart text-primary"></i>
-                        </div>
+                                    {
+                                        <p></p>
+                                    }
+                                   
+           
+             
+                         </div>
+              </div>
+               <div class="alert alert-dark stylealert">
+              <button
+                style="border: none; background-color: #d3d3d4"
+                (click)="addToCart(item)">
+                <i class="fas fa-cart-plus text-primary"></i>
+              </button>
+             @* <i *ngIf="!addToFavourit"
+                class="far fa-heart text-primary"
+                (click)="addtofav(item)" ></i>*@
+              <i *ngIf="addToFavourit"
+                class="fas fa-heart text-primary"
+                (click)="removeItemFav(item)"></i>
+            </div>
 
                    </div> 
                 </div>

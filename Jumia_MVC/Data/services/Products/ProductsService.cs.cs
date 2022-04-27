@@ -45,13 +45,30 @@ namespace FinalProject.MVC.Data.services.Products
 
        public async Task<Product>  GetProductByIdAsync(int id)
         {
-            var res = await _context.Products.Include(e => e.Category)
-                                  .FirstOrDefaultAsync(e => e.Id == id);
+            var res = await _context.Products.Include(e => e.Category).Include(x => x.Images)
+                                .FirstOrDefaultAsync(e => e.Id == id);
             return res;
         }
 
-      
+        public async Task UpdatedProductAsync(ProductVM entity)
+        {
+            var dbproduct = await _context.Products.FirstOrDefaultAsync(n => n.Id == entity.Id);
 
+            if (dbproduct != null)
+            {
+                dbproduct.Quentity = entity.Quentity;
+                dbproduct.Old_Price = entity.Old_Price;
+                dbproduct.Price = entity.Price;
+                dbproduct.CategoryId = entity.CategoryId;
+                dbproduct.Description=entity.Description;
+                dbproduct.Name=entity.Name;
+                dbproduct.Discount=entity.Discount;
+                dbproduct.Image = entity.Image;
 
+                await _context.SaveChangesAsync();
+                
+            }
+
+        }
     }
 }

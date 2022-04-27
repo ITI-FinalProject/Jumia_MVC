@@ -34,6 +34,12 @@ namespace Jumia_MVC.Data
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<Category> Categorys { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+
+        // orders related tabels
+        public virtual DbSet<Order> Orders { get; set; }
+
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
     }
 
 }

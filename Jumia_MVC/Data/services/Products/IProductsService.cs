@@ -10,6 +10,9 @@ namespace FinalProject.MVC.Data.services.Products
         Task<ProductDropDownVM> GetProductDropDownVM();
         Task AddProductAsync(ProductVM entity);
         public Task<Product> GetProductByIdAsync(int id);
+        Task UpdatedProductAsync(ProductVM entity);
+      //  Task DeleteProductAsync(ProductVM entity);
+
 
 
 
