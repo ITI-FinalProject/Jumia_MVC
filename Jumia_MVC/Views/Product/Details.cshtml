@@ -202,8 +202,10 @@
                         <div class="action">
                             <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id" class="add-to-cart btn btn-default">add to cart</a >
 @*							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-*@							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-						</div>
+*@                          <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@Model.Id">
+							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+                            </a>						
+                        </div>
                     </div>
 
 	@*				<div class="col-xs-9 mt-5">
@@ -317,9 +319,12 @@
                                  asp-action="AddItemToShoppingCart" 
                                  asp-route-id="@item.Id">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
+
+              <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id">
               <i
                 class="fas fa-heart text-primary"
                 (click)="removeItemFav(item)"></i>
+              </a>
             </div>
             
 
