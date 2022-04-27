@@ -167,13 +167,28 @@
 .orange {
     background: #ff9f1a;
 }
-
 .green {
     background: #85ad00;
 }
-
 .blue {
     background: #0076ad;
+}
+.black {
+    background: #000000
+}
+.red{
+    background: #ff0000
+}
+.white{
+    border:1px solid black;
+    background: white
+        
+}
+.yellow{
+    background: #ffd800
+}
+.silver{
+    background: #808080
 }
 
 .tooltip-inner {
@@ -208,4 +223,4 @@
     }
 }
 
-/*# sourceMappingURL=style.css.map */
+

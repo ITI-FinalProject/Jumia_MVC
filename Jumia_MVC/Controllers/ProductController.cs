@@ -4,6 +4,7 @@ using Jumia_MVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PagedList;
 
 namespace Jumia_MVC.Controllers
 {
@@ -17,21 +18,31 @@ namespace Jumia_MVC.Controllers
         {
             _productsService = productsService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var movieDropData = await _productsService.GetProductDropDownVM();
             ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
 
             FilterList = await _productsService.GellAll(e=>e.Category);
             if (FilterList == null) return View("NotFound");
+            //pagination
+            ViewBag.CurrentSort = sortOrder;
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            return View(FilterList);
+            ViewBag.CurrentFilter = searchString;
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(FilterList.ToPagedList(pageNumber, pageSize));
+
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Index(int id)
-        //{
-
-        //}
 
 
         [HttpGet]
@@ -39,6 +50,7 @@ namespace Jumia_MVC.Controllers
         {
             var movieDropData = await _productsService.GetProductDropDownVM();
             ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+            
             return View();
 
         }

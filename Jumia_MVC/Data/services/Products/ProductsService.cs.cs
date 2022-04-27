@@ -26,6 +26,7 @@ namespace FinalProject.MVC.Data.services.Products
                 Description = entity.Description,
                 Quentity = entity.Quentity,
                 CategoryId = entity.CategoryId,
+                Rate = entity.Rate,
 
             };
             await _context.Products.AddAsync(newProduct);
@@ -37,7 +38,7 @@ namespace FinalProject.MVC.Data.services.Products
             var res = new ProductDropDownVM()
             {
                 Categories = await _context.Categorys.OrderBy(e => e.Name).ToListAsync(),
-               
+                
             };
             return res;
         }
@@ -45,8 +46,8 @@ namespace FinalProject.MVC.Data.services.Products
 
        public async Task<Product>  GetProductByIdAsync(int id)
         {
-            var res = await _context.Products.Include(e => e.Category).Include(x => x.Images)
-                                .FirstOrDefaultAsync(e => e.Id == id);
+            var res = await _context.Products.Include(e => e.Category).Include(x => x.Images).Include(s => s.Sizes).Include(c => c.Colors)
+                                  .FirstOrDefaultAsync(e => e.Id == id);
             return res;
         }
 

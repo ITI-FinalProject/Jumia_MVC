@@ -22,7 +22,7 @@ namespace Jumia_MVC.Models
         public double Price { get; set; }
         public double Old_Price { get; set; }
         public int Discount { get; set; }
-        [Range(0, 5)]
+        [Range(0, 5, ErrorMessage ="Rate must be between 0:5")]
         public int Rate { get; set; }
 
         public int Quentity { get; set; }
@@ -48,5 +48,9 @@ namespace Jumia_MVC.Models
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+
+        public virtual List<Sizes>? Sizes { get; set; }
+
+        public virtual List<Colors>? Colors { get; set; }
     }
 }

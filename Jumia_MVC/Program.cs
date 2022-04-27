@@ -1,18 +1,21 @@
-
-
-
-
 using FinalProject.MVC.Data.services;
 using FinalProject.MVC.Data.services.Banners;
 using FinalProject.MVC.Data.services.Categores;
 using FinalProject.MVC.Data.services.Products;
 using Jumia_MVC.Data;
+using Jumia_MVC.Data.Cart;
+using Jumia_MVC.Data.services;
 using Jumia_MVC.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Movie_Application.Data;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+using Jumia_MVC.Data.Favorite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +30,12 @@ builder.Services.AddDbContext<ApplicationDBContext>(
 builder.Services.AddScoped<IBannerService, BannerService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductsService, ProductsService>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+builder.Services.AddScoped(fp => FavoriteProduct.GetFavoriteProduct(fp));
 
 //add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -41,6 +50,25 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 });
+
+//add localization
+builder.Services.AddLocalization(options => { options.ResourcesPath = "Resources"; });
+builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+
+builder.Services.Configure<RequestLocalizationOptions>(
+    opt =>
+    {
+        var supportCultures = new List<CultureInfo>
+        {
+            new CultureInfo("en"),
+            new CultureInfo("ar")
+        };
+        opt.DefaultRequestCulture = new RequestCulture("en");
+        opt.SupportedCultures = supportCultures;
+        opt.SupportedUICultures = supportCultures;
+    }
+    );
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -62,6 +90,12 @@ app.UseSession();
 
 app.UseAuthorization();
 app.UseAuthentication();
+
+
+var options = ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+
+app.UseRequestLocalization(options.Value);
+
 
 app.MapDefaultControllerRoute();
 
