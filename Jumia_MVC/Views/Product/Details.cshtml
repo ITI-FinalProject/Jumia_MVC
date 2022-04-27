@@ -176,8 +176,14 @@
 							<span class="color blue"></span>
 						</h5>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+						 <div class="alert alert-dark stylealert">
+                                <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">
+                    <i class="fas fa-cart-plus text-primary"></i> </a >
+
+                                <i *ngIf="addToFavourit"
+                               class="fas fa-heart text-primary"
+                               (click)="removeItemFav(item)"></i>
+                            </div>
 						</div>
 					</div>
 
@@ -256,19 +262,24 @@
              
                          </div>
               </div>
-              //Addto cart button
+
+
+             @* //Addto cart button*@
                <div class="alert alert-dark stylealert">
              @* <button
                 style="border: none; background-color: #d3d3d4"
-                (click)="addToCart(item)">
+               
+                  asp-controller="Orders" 
+                                   asp-action="AddItemToShoppingCart" 
+                                   asp-route-id="@Model.Id">>
                 <i class="fas fa-cart-plus text-primary"></i>
               </button>*@
-               <a class="btn btn-success text-white " 
-                                   asp-controller="Orders" 
-                                   asp-action="AddItemToShoppingCart" 
-                                   asp-route-id="@Model.Id">
-                                <i class="fas fa-cart-plus text-primary"></i> Add to Cart (Price @item.Price.ToString("c"))</a>
+               
              
+                                 <a   asp-controller="Orders" 
+                                 asp-action="AddItemToShoppingCart" 
+                                 asp-route-id="@item.Id">
+                    <i class="fas fa-cart-plus text-primary"></i> </a >
               <i
                 class="fas fa-heart text-primary"
                 (click)="removeItemFav(item)"></i>

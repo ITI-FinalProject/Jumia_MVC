@@ -84,10 +84,8 @@
                                 </div>
                             </div>
                             <div class="alert alert-dark stylealert">
-                                <button style="border: none; background-color: #d3d3d4"
-                                    (click)="addToCart(item)">
-                                    <i class="fas fa-cart-plus text-primary"></i>
-                                </button>
+                                <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                    <i class="fas fa-cart-plus text-primary"></i> </a >
 
                                 <i *ngIf="addToFavourit"
                                class="fas fa-heart text-primary"

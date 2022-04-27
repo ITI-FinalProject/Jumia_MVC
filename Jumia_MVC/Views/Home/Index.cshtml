@@ -88,11 +88,9 @@
                          </div>
               </div>
                <div class="alert alert-dark stylealert">
-              <button
-                style="border: none; background-color: #d3d3d4"
-                (click)="addToCart(item)">
-                <i class="fas fa-cart-plus text-primary"></i>
-              </button>
+                   @*// cart btn*@
+            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                    <i class="fas fa-cart-plus text-primary"></i> </a >
              @* <i *ngIf="!addToFavourit"
                 class="far fa-heart text-primary"
                 (click)="addtofav(item)" ></i>*@
@@ -170,9 +168,8 @@
                             </div>
                         </div>
                         <div class="alert alert-dark stylealert">
-                            <button style="border: none; background-color: #d3d3d4">
-                                <i class="fas fa-cart-plus text-primary"></i>
-                            </button>
+                            <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                    <i class="fas fa-cart-plus text-primary"></i> </a >
                             <i class="fas fa-heart text-primary"></i>
                         </div>
                     </div> 
@@ -308,12 +305,21 @@
                          
                             </div>
                         </div>
-                        <div class="alert alert-dark stylealert">
-                            <button style="border: none; background-color: #d3d3d4">
-                                <i class="fas fa-cart-plus text-primary"></i>
-                            </button>
-                            <i class="fas fa-heart text-primary"></i>
-                        </div>
+                       <div class="alert alert-dark stylealert">
+             @* <button
+                style="border: none; background-color: #d3d3d4"
+                (click)="addToCart(item)">
+                <i class="fas fa-cart-plus text-primary"></i>
+              </button>*@
+               <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                    <i class="fas fa-cart-plus text-primary"></i> </a >
+            @*  <i *ngIf="!addToFavourit"
+                class="far fa-heart text-primary"
+                (click)="addtofav(item)" ></i>*@
+              <i *ngIf="addToFavourit"
+                class="fas fa-heart text-primary"
+                (click)="removeItemFav(item)"></i>
+            </div>
                     </div> 
                 </div>
             }
