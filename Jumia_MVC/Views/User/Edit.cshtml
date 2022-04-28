@@ -1,0 +1,51 @@
+﻿@using Jumia_MVC.Data.ViewModel
+@model ProfileModelVM
+
+
+@{
+    ViewData["Title"] = "Update User";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Update  User:@Model.FullName</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                 <label asp-for="FullName"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+                  </div>
+            
+            <div class="form-group">
+                 <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control"  />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+                <div class="form-group">
+                 <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" maxlength=100 />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+        
+        
+                   
+                 
+
+                    <div class="form-group my-3">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
