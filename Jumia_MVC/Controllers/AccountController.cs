@@ -5,6 +5,7 @@ using Jumia_MVC.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Jumia_MVC.Controllers
 {
@@ -107,7 +108,16 @@ namespace Jumia_MVC.Controllers
 
         }
 
-    
+    //public async Task< IActionResult > UserProfile()
+    //    {
+    //        var user = await _userManager.Users.ToListAsync();
+    //        return View(UserProfile);
+    //    }
+    [HttpGet , Authorize]
+        public ActionResult UserProfile()
+        {
+            return View();
 
+        }
     }
 }
