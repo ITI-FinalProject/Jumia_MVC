@@ -120,6 +120,12 @@
   <data name="Discount" xml:space="preserve">
     <value>خصم</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي &amp;raquo;</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value> &amp;laquo; السابق</value>
+  </data>
   <data name="Product" xml:space="preserve">
     <value>المنتجات</value>
   </data>

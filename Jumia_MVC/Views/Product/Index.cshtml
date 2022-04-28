@@ -1,6 +1,5 @@
-﻿@model PagedList.IPagedList<Product>
-@using PagedList.Mvc;
-@using System.Web.Mvc;
+﻿@model IEnumerable<Product>
+
 
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
 
@@ -19,13 +18,11 @@
                         <div class="form-group">
                             <label  class="control-label">Category :</label>
                             <select  name="CategoryId"  class="form-control" asp-items="ViewBag.Category"></select>
-@*                                <span asp-validation-for="CategoryId" class="text-danger"></span>
-*@                      </div>
+                     </div>
                         <div class="form-group mt-2">
                             <label  class="control-label">Discount :</label>
                             <input type="checkbox" name="check" />
-@*                          <span asp-validation-for="CategoryId" class="text-danger"></span>
-*@                      </div>
+                     </div>
                         <div class="form-group mt-4">
                             <input type="submit" value="Submit" class="btn btn-outline-success float-right" />
                             <a class="btn btn-outline-info" asp-action="Index">Defult</a>
@@ -99,6 +96,23 @@
             }
 
         </div>
+
+        @*pagination*@
+
+        @if (ViewBag.Page > 0)
+        {
+            <a style="float:left;" href="@Url.Action("Index", new { page = ViewBag.Page - 1 })" 
+                class="btn btn-default">
+                @localizer["Prev"]
+            </a>
+        }
+        @if (ViewBag.Page < ViewBag.MaxPage)
+        {
+            <a style="float:right;" href="@Url.Action("Index", new { page = ViewBag.Page + 1 })" 
+               class="btn btn-default">
+                @localizer["Next"]
+            </a>
+        }
     </div>
 </div>
 
@@ -107,10 +121,4 @@
     @await Html.PartialAsync("CustomButton","Product")
 
 }
-@*
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@((IHtmlHelper)Html).PagedListPager(Model, page => Url.Action("Index", 
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
-
 
