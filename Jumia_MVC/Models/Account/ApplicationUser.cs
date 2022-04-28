@@ -11,5 +11,8 @@ namespace Jumia_MVC.Models
         [Display(Name ="Full Name")]
         public string FullName { get; set; }
         public byte[]? ImageProfle { get; set; }
+        [Display(Name = "Address")]
+
+        public string? Address { get; set; }
     }
 }

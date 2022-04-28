@@ -4,7 +4,7 @@
 
 namespace FinalProject.MVC.Migrations
 {
-    public partial class favorite_and_favoriteItem_added : Migration
+    public partial class addFavourit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

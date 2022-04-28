@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.MVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20220427150637_favorite_and_favoriteItem_added")]
-    partial class favorite_and_favoriteItem_added
+    [Migration("20220428175430_addFavourit")]
+    partial class addFavourit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
