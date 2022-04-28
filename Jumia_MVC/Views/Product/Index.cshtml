@@ -8,7 +8,8 @@
     ViewData["Title"] = @localizer["Product"] ;
 }
 
-<div class="row cont">
+<div class="row cont" 
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="col-sm-3">
         <div class="card ">
             <div class="card-body type_card">

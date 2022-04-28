@@ -41,6 +41,8 @@ namespace Jumia_MVC.Data
 
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public virtual DbSet<FavoriteItem> FavoriteItems { get; set; }
+
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
 
-<footer class="container-fluid mt-5   border-top footer text-muted ">
+<footer class="container-fluid mt-5   border-top footer text-muted " 
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="row ">
   
         <div class="col-md-3 col-12 my-3"> 
