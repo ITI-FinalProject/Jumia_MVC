@@ -3,71 +3,123 @@
 @model FavoriteVM
 
 @{
-    ViewData["Title"] = "Favorite Products";
+    ViewData["Title"] = "Favourit Products";
 }
+<style>
+   /* *{
+        background-color:white;
+    }
+    .row{
+        background-color:lightgray;
+    }
+    .main{
+        margin-top:10px;
+        padding:10px;
+        background-color:white;
+        border-radius:5px
+    }
+    
+    .item{
+        display:block
+    }*/
+    .item{
+        box-shadow:3px 3px 5px lightgray;
+    }
+    .item{
+        height:150px;
+        border:1px solid lightgray;
+        padding-top:10px;
 
+    }
+    .btn{
+        font-weight:bold;
+    }
+    .b2{
+/*        border-color:#FBB03B;
+*/        color:#FBB03B; 
+
+    }
+    .b2:hover{
+        background-color:#FBB03B;
+        border-block-color:#FBB03B;
+        color:white;
+    }
+    .b1{
+        background-color:#FBB03B;
+        border-block-color:#FBB03B;
+        color:white;
+        box-shadow:3px 3px 5px lightgray
+    }
+    .b1:hover{
+        border-color:#FBB03B;
+        color:#FBB03B;
+        background-color:white;
+    }
+    /*.col-sm-9{
+        width:100%;
+        height:200px;
+    }*/
+    
+</style>
 <div class="row">
-    <div class="col-md-8 offset-2">
-        <div class="text-center" style="padding-top:70px">
-            <h2>Your Favorite Products!</h2>
+    <div class=" col-9 offset-2 main">
+        <div style="padding-top:70px">
+            <h2>Your Favourit Products!</h2><hr />
         </div>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Favorite.FavoriteItems)
+        <div class="favitem">
+            @foreach (var item in Model.Favorite.FavoriteItems)
                 {
-                    <tr>
-                        <td class="align-middle"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" style="height:100px" /></td>
-                        <td class="align-middle">@item.Product.Name</td>
-                        <td class="align-middle">@item.Product.Price.ToString("c")</td>
-@*                        <td class="align-middle">@((item.Amount*item.Product.Price).ToString("c"))</td>
-*@                        <td class="align-middle">
-                            <a class="text-danger" asp-controller="Favorite" asp-action="RemoveItemFromFavorite" asp-route-id="@item.Product.Id">
-                                <i class="bi bi-heart"></i>
-                            </a>
-                            | |
-                            <a class="text-success" >
-                                <i class="fas fa-cart-plus"></i>
-                            </a>
-                            </td>
-                        <td class="align-middle">
-                                <div class="btn-group">
-                                    <a class="btn btn-outline-success" asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id">Go Back To Product</a>
+                    <div class="item d-flex ">
+                        <a asp-action="Details" asp-route-id="@item.Product.Id" class="align-middle col-2"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" style="height:100px" /></a> 
+                        <div class="align-middle col-6 p-2" ><div> @item.Product.Name<pre>
+                        </pre></div>
+                        <div class="styleprice align-middle"><p class="card-text text-muted ">@item.Product.Price.ToString("c")</p>
+                                    @if (item.Product.Discount != 0)
+                                    {
+                                        <p class="card-text text-danger text-decoration-line-through">
+                                            @item.Product.Old_Price.ToString("c")
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p></p>
+                                    }
+                            </div>
+                        </div>
+                        <div class="align-middle col-1"></div>
+                        <div>
+                            <div class="btn-group">
+                                    <a class="btn b1" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Product.Id">
+                                        <i class="fas fa-cart-plus"><partial></i><span> Add To Cart</span>
+                                    </a>
+                                
                                 </div>
-                            
-                        </td>
-                    </tr>
+                            <pre>
+                            </pre>
+                        <div class="align-middle">
+                                <div class="btn-group">
+                                    <a class="btn b2" asp-controller="Favorite" asp-action="RemoveItemFromFavorite" asp-route-id="@item.Product.Id">
+                                       <i class="bi bi-trash"></i><span> Remove</span></a>
+                                
+                                </div>
+                        </div> 
+                        </div>
+                        </div>
+                        <hr />
                 }
-            </tbody>
-            @*<tfoot>
-                <tr>
-                    <td colspan="2"></td>
-                    <td><b>Total:</b></td>
-                    <td>
-                        @Model.FavoriteTotal.ToString("c")
-                    </td>
-                    <td></td>
-                </tr>
-            </tfoot>*@
-        </table>
+                         
+       </div>
+       </div>
+       
 
         <div class="text-center">
             <div class="btn-group">
-                <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index">
-                    Browse More Products
+                <a class="btn b1" asp-controller="Product" asp-action="Index">
+                    CONTINUE SHOPPING
                 </a>
             </div>
         </div>
-    </div>
+    
+        </div>
 
-</div>
 
