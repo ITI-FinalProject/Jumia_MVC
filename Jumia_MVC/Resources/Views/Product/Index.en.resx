@@ -120,6 +120,12 @@
   <data name="Discount" xml:space="preserve">
     <value>Discount</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next &amp;raquo;</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>&amp;laquo; Prev</value>
+  </data>
   <data name="Product" xml:space="preserve">
     <value>Product</value>
   </data>
