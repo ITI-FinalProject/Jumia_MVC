@@ -1,24 +1,27 @@
-﻿@model LoginVM;
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
+@model LoginVM;
 
 @{ 
-    ViewData["Title"] = "Log in to your account";
+    ViewData["Title"] = localizer["title"];
 }
 
 
 <link rel="stylesheet" href="~/css/Login.css"/>
 
-<div class="container mt-5">
+<div class="container mt-5"
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="row">
         <div class="col-md-5 d-flex align-items-center">
         <p>
-            <h1>Log in to your account</h1>
+            <h1>@localizer["header"] </h1>
         </p>
         </div>
 
         @if(TempData["Error"] != null)
             {
                 <div class="col-md-12 alert alert-danger">
-                    <span><b>Sorry!</b> - @TempData["Error"] </span>
+                    <span><b>@localizer["sorry"] </b> - @TempData["Error"] </span>
                 </div>
             }
 
@@ -27,22 +30,22 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
-                        <label asp-for="Emaill" >Email</label>
+                        <label asp-for="Emaill" >@localizer["Email"] </label>
                         <input asp-for="Emaill" class="form-control" />
                         <span asp-validation-for="Emaill" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password"></label>
+                        <label asp-for="Password">@localizer["pass"] </label>
                         <input asp-for="Password" class="form-control" id="inputPassword3"/>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div>
-                        <a asp-controller="Account" asp-action="Register" class="dontHaveAcc " value="Login">Don't Have An Account?</a>
+                        <a asp-controller="Account" asp-action="Register" class="dontHaveAcc " value="Login">@localizer["noAccoubt"] </a>
                     </div>
 
                     <div class="form-group mt-4 d-flex">
-                        <input class="btn b1 float-left" type="submit" value="Log in" />
-                        <a class="btn b2 float-right" asp-controller="Home" asp-action="Index">Cancel</a>
+                        <input class="btn b1 float-left" type="submit" value=@localizer["Login"] />
+                        <a class="btn b2 float-right" asp-controller="Home" asp-action="Index">@localizer["Cancel"] </a>
                     </div>
                 </form>
             </div>

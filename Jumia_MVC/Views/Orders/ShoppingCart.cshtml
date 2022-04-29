@@ -1,8 +1,10 @@
-﻿@using Jumia_MVC.Data.ViewModel
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
+@using Jumia_MVC.Data.ViewModel
 @model ShoppingCartVM
 
 @{ 
-    ViewData["Title"] = "Shopping Cart ";
+    ViewData["Title"] = localizer["title"];
 }
 
 
@@ -10,38 +12,40 @@
 {
      <div class="row g-0 mt-6 ">
            <div class="container pt-5">
-        <div class="card">
-            <h5 class="card-title">My Cart</h5>
+        <div class="card"
+            dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+            <h5 class="card-title">@localizer["MyCart"]</h5>
         </div>
     
         <div class="text-center">
             <img src="https://www.metro-markets.com/plugins/user/images/emptycart.png" alt="">
-            <h4>Your cart is empty!</h4>
-            <h6>Add item to it now</h6>
-            <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index"  >SHOP NOW</a>
+            <h4>@localizer["empty"] </h4>
+            <h6>@localizer["Browse"] </h6>
+            <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index"  >@localizer["shop"]</a>
         </div>
     </div>
          </div>
     
 }else{
     <div class="row g-0 mt-6 mx-3">
-    <div class="col-md-8 offset-2">
-        
+    <div class="col-md-8 offset-2"
+        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+
         <p>
-            <h4>Your Shopping Cart</h4>
+            <h4>@localizer["yourCart"] </h4>
         </p>
 
         <table class="table  table-hover table-bordered table-responsive">
             <thead>
                 <tr>
-                     <th> Product</th>
-                    <th> Amount</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Ammount</th>
+                    <th>@localizer["Product"] </th>
+                    <th>@localizer["Amount"] </th>
+                    <th>@localizer["Price"] </th>
+                    <th>@localizer["Total"] </th>
+                    <th>@localizer["Ammount"] </th>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <th>User</th>
+                        <th>@localizer["User"] </th>
                     }
                 </tr>
             </thead>
@@ -56,7 +60,7 @@
                              <span style="padding-left=10px"></span>
                               <div class="flex-column mx-4 px-3">
                                           <p class="px-4" >@item.Product.Name</p>
-                                           <a class="btn btn-danger bg-danger text-white">Remove</a>
+                                           <a class="btn btn-danger bg-danger text-white">@localizer["Remove"]</a>
                                  </div>
                         </div>
                         </td>
@@ -102,7 +106,7 @@
                    </div>
                     <span style="padding:5px"></span>
                 <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index">
-                    Add more items
+                    @localizer["add"]
                 </a>
             </div>
         </div>

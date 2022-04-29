@@ -2,7 +2,8 @@
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = localizer["title"] ;
+
 }
 
 <!-- Required meta tags -->
@@ -20,6 +21,13 @@
     <link rel="stylesheet" href="css/style.css">
 
     <title>Contact Form #6</title>
+
+    <style>
+        input{
+            margin-bottom: 6px;
+        }
+    </style>
+
 <div class="container-fluid  col-sm-9  mt-6 ">
 
     <div class="row g-0"> 
@@ -86,7 +94,7 @@
                 </div>  
                 <div class="row">
                   <div class="col-12">
-                    <input type="submit" value=@localizer["send"] class="btn btn-primary rounded-0 py-2 px-4">
+                    <input style="margin-top:8px;" type="submit" value=@localizer["send"] class="btn btn-primary rounded-0 py-2 px-4">
                   <span class="submitting"></span>
                   </div>
                 </div>

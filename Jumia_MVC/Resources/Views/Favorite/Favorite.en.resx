@@ -117,37 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="confirm" xml:space="preserve">
-    <value>Your message was sent, thank you!</value>
+  <data name="add" xml:space="preserve">
+    <value>Add To Cart</value>
   </data>
-  <data name="ContactUs" xml:space="preserve">
-    <value>Contact us</value>
+  <data name="continue" xml:space="preserve">
+    <value>CONTINUE SHOPPING</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="findSomeThing" xml:space="preserve">
+    <value>Found something you like? Tap on the heart shaped icon next to the item to add it to your wishlist! All your saved items will appear here.</value>
   </data>
-  <data name="feedback" xml:space="preserve">
-    <value>give us your feedback or tell us about any problem</value>
+  <data name="noItem" xml:space="preserve">
+    <value>You haven’t saved an item yet!</value>
   </data>
-  <data name="letTalk" xml:space="preserve">
-    <value>Let's talk about everything!</value>
-  </data>
-  <data name="message" xml:space="preserve">
-    <value>Write your message</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="send" xml:space="preserve">
-    <value>Send Message</value>
-  </data>
-  <data name="Subject" xml:space="preserve">
-    <value>Subject</value>
-  </data>
-  <data name="text" xml:space="preserve">
-    <value>Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.</value>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="title" xml:space="preserve">
-    <value>Contact Us</value>
+    <value>Favourit Products</value>
+  </data>
+  <data name="title2" xml:space="preserve">
+    <value>Your Favourit Products!</value>
   </data>
 </root>

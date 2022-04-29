@@ -188,32 +188,41 @@
     <div class="swiper-button-prev"></div> 
 </div>
 
- <div class="container-fluid">
+ <div class="container-fluid"
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="row g-0 my-5" id="our">
         <h2 class="text-center text-uppercase col-12 my-5">
             @localizer["chooseUs"]
         </h2>
 
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-6 col-md-3"
+            dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
             <div class="card-body style_card_body">
                 <div class="text-start">
                     <div class="iconstyle card-title">
                         <i class="fa-solid fa-truck-fast fa-3x card-img-top text-start"></i>
                     </div>
-                    <h4 class="text-uppercase card-subtitle my-2">@localizer["freeShiping"] </h4>
+                    <h4 class="text-uppercase card-subtitle my-2"
+                        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+                        @localizer["freeShiping"] 
+                    </h4>
                     <p class="card-text text-secondary">
                         @localizer["shipingDetails"]
                     </p>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-6 col-md-3"
+            dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
             <div class="card-body style_card_body">
                 <div class="text-start">
                     <div class="iconstyle card-title">
                         <i class="fa-solid fa-credit-card fa-3x card-img-top text-start"></i>
                     </div>
-                    <h4 class="text-uppercase card-subtitle my-2">@localizer["easyPay"] </h4>
+                    <h4 class="text-uppercase card-subtitle my-2"
+                        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+                        @localizer["easyPay"] 
+                    </h4>
                     <p class="card-text text-secondary">
                         @localizer["paymentProcess"]
                     </p>
@@ -221,13 +230,15 @@
             </div>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-6 col-md-3"
+                        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
             <div class="card-body style_card_body">
                 <div class="text-start">
                     <div class="iconstyle card-title">
                         <i class="fa-solid fa-hand-holding-dollar fa-3x card-img-top text-start"></i>
                     </div>
-                    <h4 class="text-uppercase card-subtitle my-2">
+                    <h4 class="text-uppercase card-subtitle my-2"
+                        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
                         @localizer["moneyBack"]
                     </h4>
                     <p class="card-text text-secondary">
@@ -237,13 +248,17 @@
             </div>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-6 col-md-3"
+                        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
             <div class="card-body style_card_body">
                 <div class="text-start">
                     <div class="iconstyle card-title">
                         <i class="fa-solid fa-clone fa-3x card-img-top text-center"></i>
                     </div>
-                    <h4 class="text-uppercase card-subtitle my-2">@localizer["FinestQuality"] </h4>
+                    <h4 class="text-uppercase card-subtitle my-2"
+                        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+                        @localizer["FinestQuality"] 
+                    </h4>
                     <p class="card-text text-secondary">
                         @localizer["design"]
                     </p>

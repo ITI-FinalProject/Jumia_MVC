@@ -1,24 +1,28 @@
-﻿@model IEnumerable<Order>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
+@model IEnumerable<Order>
 
 @{ 
-    ViewData["Title"] = "All orders";
+    ViewData["Title"] = localizer["orders"];
 }
 
 <div class="row mt-6 g-0">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-8 offset-2"
+        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
         <p>
-            <h4>List of all your orders</h4>
+            <h4>@localizer["listOfOrders"]</h4>
         </p>
 
-        <table class="table">
+        <table class="table"
+            dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Items</th>
-                    <th>Total</th>
+                    <th>@localizer["id"] </th>
+                    <th>@localizer["Items"] </th>
+                    <th>@localizer["Total"] </th>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <th>User</th>
+                        <th>@localizer["User"] </th>
                     }
                 </tr>
             </thead>

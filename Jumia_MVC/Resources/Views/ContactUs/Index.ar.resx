@@ -147,4 +147,7 @@
   <data name="text" xml:space="preserve">
     <value>هل لديك اسئلة؟ من فضلك لا تتردد في الاتصال بنا مباشرة. سيعود فريقنا إليك في غضون ساعات لمساعدتك.</value>
   </data>
+  <data name="title" xml:space="preserve">
+    <value>تواصل معنا</value>
+  </data>
 </root>

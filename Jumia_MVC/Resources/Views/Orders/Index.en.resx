@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="confirm" xml:space="preserve">
-    <value>Your message was sent, thank you!</value>
+  <data name="id" xml:space="preserve">
+    <value>Order ID</value>
   </data>
-  <data name="ContactUs" xml:space="preserve">
-    <value>Contact us</value>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="listOfOrders" xml:space="preserve">
+    <value>List of all your orders</value>
   </data>
-  <data name="feedback" xml:space="preserve">
-    <value>give us your feedback or tell us about any problem</value>
+  <data name="orders" xml:space="preserve">
+    <value>All orders</value>
   </data>
-  <data name="letTalk" xml:space="preserve">
-    <value>Let's talk about everything!</value>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
-  <data name="message" xml:space="preserve">
-    <value>Write your message</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="send" xml:space="preserve">
-    <value>Send Message</value>
-  </data>
-  <data name="Subject" xml:space="preserve">
-    <value>Subject</value>
-  </data>
-  <data name="text" xml:space="preserve">
-    <value>Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.</value>
-  </data>
-  <data name="title" xml:space="preserve">
-    <value>Contact Us</value>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
   </data>
 </root>

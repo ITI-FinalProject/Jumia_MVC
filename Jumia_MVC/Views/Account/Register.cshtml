@@ -1,23 +1,26 @@
-﻿@model RegisterVM;
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
+@model RegisterVM;
 
 @{ 
-    ViewData["Title"] = "Sign up for a new account";
+    ViewData["Title"] = localizer["title"];
 }
 
 <link rel="stylesheet" href="~/css/Login.css"/>
 
-<div class="container mt-5">
+<div class="container mt-5"
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="row">
         <div class="col-md-5 d-flex align-items-center">
         <p>
-            <h1>Sign up for a new account</h1>
+            <h1>@localizer["Register"] </h1>
         </p>
         </div>
 
         @if(TempData["Error"] != null)
             {
                 <div class="col-md-12 alert alert-danger">
-                    <span><b>Sorry!</b> - @TempData["Error"] </span>
+                    <span><b>@localizer["sorry"] </b> - @TempData["Error"] </span>
                 </div>
             }
 
@@ -26,28 +29,28 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                     <div class="form-group">
-                        <label asp-for="FullName"></label>
+                        <label asp-for="FullName">@localizer["FullName"] </label>
                         <input asp-for="FullName" class="form-control" />
                         <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Emaill"></label>
+                        <label asp-for="Emaill">@localizer["Email"] </label>
                         <input asp-for="Emaill" class="form-control" />
                         <span asp-validation-for="Emaill" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password"></label>
+                        <label asp-for="Password">@localizer["pass"]</label>
                         <input asp-for="Password" class="form-control" id="inputPassword3" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ConfirmPassword"></label>
+                        <label asp-for="ConfirmPassword">@localizer["ConfirmPassword"] </label>
                         <input asp-for="ConfirmPassword" class="form-control" id="inputPassword3" />
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                     <div class="form-group mt-4 d-flex">
-                        <input class="btn b1 float-right" type="submit" value="Sign up" />
-                        <a class="btn b2 float-left" asp-controller="Home" asp-action="Index">Cancel</a>
+                        <input class="btn b1 float-right" type="submit" value=@localizer["sign"] />
+                        <a class="btn b2 float-left" asp-controller="Home" asp-action="Index">@localizer["Cancel"] </a>
                     </div>
                 </form>
             </div>
