@@ -1,5 +1,6 @@
 ﻿using FinalProject.MVC.Data.services.Products;
 using FinalProject.MVC.Data.ViewModel;
+using Jumia_MVC.Data;
 using Jumia_MVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,15 @@ namespace Jumia_MVC.Controllers
     public class ProductController : Controller
     {
         private readonly IProductsService _productsService;
+        private readonly ApplicationDBContext _context;
+
 
         private IEnumerable<Product> FilterList;
 
-        public ProductController(IProductsService productsService)
+        public ProductController(IProductsService productsService, ApplicationDBContext context)
         {
             _productsService = productsService;
+            _context = context;
         }
         public async Task<IActionResult> Index(int page = 0)
         {
@@ -179,6 +183,20 @@ namespace Jumia_MVC.Controllers
             return View("Index", submitFilter);
         }
 
+        public IActionResult AddComment(int ProductId, int Rating, string Comment)
+        {
+            Comments cm = new Comments();
+            cm.ProductId = ProductId;
+            cm.Rating = Rating;
+            cm.Comment = Comment;
+            cm.Date = DateTime.Now;
+
+
+            _context.Comments.Add(cm);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
 
     }
 }

@@ -6,6 +6,8 @@
     
 }
 
+
+
 @*<div class="row g-0 mt-6">
     <div class="col-md-8 offset-2">
         <div class="card mb-12">
@@ -30,11 +32,11 @@
                            <p class="card-text text-uppercase"><b>Category: </b>@Model.Category.Name</p>
 
                            <p class="card-text text-danger">
-                               <b class="text-black">Price: </b>@Model.Price.ToString("c")</p>
+                               <b class="text-black">Price: </b>@Model.Price.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
 
                            <p class="card-text text-black ">Old_Price: 
                              <b class=" text-muted text-secondary text-decoration-line-through">
-                              @Model.Old_Price.ToString("c") </b></p>
+                              @Model.Old_Price.ToString("c", new System.Globalization.CultureInfo("en-US")) </b></p>
                                
                             
                         <p  class="card-text " >
@@ -54,7 +56,7 @@
                             <a class="btn btn-success text-white " 
                                    asp-controller="Order" 
                                    asp-action="AddItemToShoppingCart" 
-                                   asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))</a>
+                                   asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c", new System.Globalization.CultureInfo("en-US")))</a>
                         </p>
                     </div>
                 </div>
@@ -161,10 +163,10 @@
 							<span class="review-no">41 reviews</span>
 						</div>
 						
-						<h4 class="price">current price: <span>@Model.Price.ToString("c")</span></h4>
+						<h4 class="price">current price: <span>@Model.Price.ToString("c", new System.Globalization.CultureInfo("en-US"))</span></h4>
 						<p class="card-text text-black ">Old_Price: 
                              <b class=" text-muted text-secondary text-decoration-line-through">
-                              @Model.Old_Price.ToString("c") </b></p>
+                              @Model.Old_Price.ToString("c", new System.Globalization.CultureInfo("en-US")) </b></p>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 
 
@@ -229,7 +231,6 @@
 					<div class="col-xs-9 mt-5">
                     <ul class="menu-items">
                         <li class="active">Details</li>
-       
                     </ul>
                     <div style="width:100%;border-top:1px solid silver">
               
@@ -237,6 +238,64 @@
                             @Model.Description  
                         </small>
                     </div>
+                    <hr />
+                    <br />
+
+                    <ul class="menu-items">
+                        <li class="active">Comments</li>
+                        </ul>
+
+                    @for (int i = 0; i < @Model.Comments.Count(); i++)
+                    {
+                        <table style="width:100%; border:1px solid black"  >
+                            <tr>
+                                <td class="p-2">
+                                @Model.Comments[i].Date.ToString("dd-MMM-yyyy")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">
+                                <b>@Model.Comments[i].Comment</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">
+                                    @for(int x = 0; x < @Model.Comments[i].Rating; x++)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                    }
+                                      @for(int x = @Model.Comments[i].Rating; x <5 ; x++)
+                                    {
+                                        <span class="fa fa-star "></span>
+                                    }
+                                 
+                                </td>
+                            </tr>
+ 
+                        </table>
+                        <br />
+
+                    }
+
+                                  <h6>Add your Comment</h6>
+                                    @using (Html.BeginForm("AddComment","Product",FormMethod.Post,new {onsubmit = "return VerifyRating()" }))
+                                    {
+                                        <textarea rows="6" cols="50" name="Comment" id="txtComment"></textarea>
+                                                <div onmouseout="CRateSelected()">
+                                            <span id="span1" onmouseout="CRateOut(1)" onmouseover="CRateOver(1)" onclick="CRateClick(1)" class="fa fa-star "></span>
+                                            <span id="span2" onmouseout="CRateOut(2)" onmouseover="CRateOver(2)" onclick="CRateClick(2)" class="fa fa-star "></span>
+                                            <span id="span3" onmouseout="CRateOut(3)" onmouseover="CRateOver(3)" onclick="CRateClick(3)" class="fa fa-star "></span>
+                                            <span id="span4" onmouseout="CRateOut(4)" onmouseover="CRateOver(4)" onclick="CRateClick(4)" class="fa fa-star "></span>
+                                            <span id="span5" onmouseout="CRateOut(5)" onmouseover="CRateOver(5)" onclick="CRateClick(5)" class="fa fa-star "></span>
+                                        </div>
+                                        <div>
+                                            <input type="hidden" id="lblRating" name="Rating" value="0">
+                                            <input type="hidden" id="lblProductId" name="ProductId" value="@Model.Id">
+
+                                        </div>
+                                        <br />
+                                        <input type="submit" class="btn btn-warning " name="SaveComment"  value="Save Comment" />
+                                    }
                 </div>
 
 				</div>
@@ -286,11 +345,11 @@
                 </h5>
               </div>
                  <div class="styleprice">
-                <p class="card-text text-muted">@item.Price.ToString("c") </p>
+                <p class="card-text text-muted">@item.Price.ToString("c", new System.Globalization.CultureInfo("en-US")) </p>
                                 @if (item.Discount !=0)
                                 {
                                      <p class="card-text text-danger text-decoration-line-through">
-                                           @item.Old_Price.ToString("c")
+                                           @item.Old_Price.ToString("c", new System.Globalization.CultureInfo("en-US"))
                                         </p>
                                 }         else
                                     {
@@ -359,7 +418,52 @@
       });
 
         $("#zoom_01").elevateZoom();
+
+
+
+      //comments
+                function CRateOut(rating){
+            for(var i=1;i<=rating;i++){
+                $("#span" + i).attr('class', 'fa fa-star');
+            }
+        }
+
+        function CRateOver(rating){
+             for(var i=1;i<=rating;i++){
+                $("#span" + i).attr('class','fa fa-star checked');
+            }
+        }
+
+        function CRateClick(rating){
+            $("#lblRating").val(rating);
+            for(var i=1;i<=rating;i++){
+                $("#span" + i).attr('class','fa fa-star checked');
+            }
+
+            for(var i=rating;i<=5;i++){
+                $("#span"+i).attr('class','fa fa-star');
+            }
+        }
+
+        function CRateSelected(){
+            var rating = $("#lblRating").val()
+            for(var i=1;i<=rating;i++){
+                $("#span"+i).attr('class','fa fa-star checked');
+            }
+        }
+
+        function VerifyRating(){
+            var rating = $("#lblRating").val()
+            if( rating == "0"){
+                alert("please select Rate!")
+                return false;
+            }else {
+                alert("Thank you for your Feadback")
+            }
+
+        }
       
+       
         
     </script>
 }

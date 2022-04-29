@@ -94,11 +94,11 @@
                         <a asp-action="Details" asp-route-id="@item.Product.Id" class="align-middle col-2"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" @*style="height:100px"*@ /></a> 
                         <div class="align-middle col-6 p-2" ><div> @item.Product.Name<pre>
                         </pre></div>
-                        <div class="styleprice align-middle"><p class="card-text text-muted ">@item.Product.Price.ToString("c")</p>
+                        <div class="styleprice align-middle"><p class="card-text text-muted ">@item.Product.Price.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
                                     @if (item.Product.Discount != 0)
                                     {
                                         <p class="card-text text-danger text-decoration-line-through">
-                                            @item.Product.Old_Price.ToString("c")
+                                            @item.Product.Old_Price.ToString("c", new System.Globalization.CultureInfo("en-US"))
                                         </p>
                                     }
                                     else

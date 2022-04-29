@@ -52,5 +52,7 @@ namespace Jumia_MVC.Models
         public virtual List<Sizes>? Sizes { get; set; }
 
         public virtual List<Colors>? Colors { get; set; }
+        public virtual List<Comments>? Comments { get; set; }
+
     }
 }
