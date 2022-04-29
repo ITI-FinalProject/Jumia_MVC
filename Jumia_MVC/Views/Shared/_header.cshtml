@@ -1,5 +1,11 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
- 
+
+<style>
+    header{
+        font-size:15px;
+    }
+</style> 
+
 <header
     dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow  fixed-top justify-content-between">
@@ -25,7 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="About">@localizer["About"] </a>
                     </li>   
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <partial name="_Culture"/> 
                     </li>
                    
@@ -36,7 +42,7 @@
 @*                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
 *@              </form>
 
-                    <ul class="nabar-nav">
+                    <ul class="nabar-nav" style="margin-top:8px;">
                         @await Component.InvokeAsync("ShoppingCatSummary")
                     </ul>
                      @*user profile section*@

@@ -185,14 +185,9 @@ body {
     margin-top:5rem;
 }
 
+/* product */
 .cont {
-    margin: 3rem 2px;
+    margin: 4rem 2px;
 }
 
-.type_card>a{
-    display:block;
-    text-decoration:none;
-    color:gray;
-    margin-top:10px;
-
-}
+/* header */

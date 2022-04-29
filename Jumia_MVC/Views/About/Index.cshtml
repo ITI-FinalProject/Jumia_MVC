@@ -1,6 +1,7 @@
-﻿
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @localizer["about"] ;
 
 }
 
@@ -25,14 +26,14 @@
 }
 
 
-<div class="bg-light">
+<div class="bg-light"
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
   <div class="container py-5">
     <div class="row h-100 align-items-center py-5">
       <div class="col-lg-6">
-        <h1 class="display-4">About E-Shope</h1>
-        <p class="lead text-muted mb-0">E-Shope, Egypt's no. 1 online mall was established in July 2012 with the aim and vision 
-        to become the one-stop shop in Egypt with implementation of best practices both online and offline.</p>
-       
+        <h1 class="display-4">@localizer["title"] </h1>
+        <p class="lead text-muted mb-0">
+            @localizer["description"]
         </p>
       </div>
       <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
@@ -40,41 +41,43 @@
   </div>
 </div>
 
-<div class="bg-white py-5">
+<div class="bg-white py-5"
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
   <div class="container py-5">
     <div class="row align-items-center mb-5">
       <div class="col-lg-6 order-2 order-lg-1"><i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
-        <h2 class="font-weight-light">E-Shope History</h2>
+        <h2 class="font-weight-light">@localizer["history"] </h2>
         <p class="font-italic text-muted mb-4">
-        <p class=" text-center  "> E-Shope is the largest online mall store in Egypt.
-        At inception we did an average delivery time of a week, today we do,on average, delivery in 1-5 days.
-        Initially starting with 3 employees, 
-        E-Shope presently has a staff strength of 350 young and entrepreneurial Egyptians.
-        Deliveries to all cities in Egypt.</p></p>
+        <p class=" text-center  "> 
+            @localizer["historyDesc"]
+        </p>
       </div>
       <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
     </div>
     <div class="row align-items-center">
       <div class="col-lg-5 px-5 mx-auto"><img src="https://bootstrapious.com/i/snippets/sn-about/img-2.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
       <div class="col-lg-6"><i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
-        <h2 class="font-weight-light">Our Serveses</h2>
-        <p class="font-italic text-muted mb-4"> 1) Pre-Installation services<br/>
-             2) User training<br/>
-             3) Warranty services<br/>
-             4) Online support<br/>
-             5) Return/Replacement<br/>
-             6) Features and benefits</p>
-             <a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Learn More</a>
+        <h2 class="font-weight-light">@localizer["serveses"] </h2>
+        <p class="font-italic text-muted mb-4">
+             @localizer["serve1"] <br/>
+             @localizer["serve2"] <br/>
+             @localizer["serve3"]<br/>
+             @localizer["serve4"]<br/>
+             @localizer["serve5"]<br/>
+             @localizer["serve6"]<br/>
+        </p>
+        <a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">@localizer["more"] </a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="bg-light py-5">
+<div class="bg-light py-5"
+    dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
   <div class="container py-5">
     <div class="row mb-4">
       <div class="col-lg-5">
-        <h2 class="display-4 font-weight-light">Our team</h2>
+        <h2 class="display-4 font-weight-light">@localizer["team"] </h2>
         
       </div>
     </div>
@@ -175,7 +178,7 @@
 
 <footer class="bg-light pb-5">
   <div class="container text-center">
-    <p class="font-italic text-muted mb-0">&copy; Copyrights E-Shope.com All rights reserved.</p>
+    <p class="font-italic text-muted mb-0">@localizer["copy"] </p>
   </div>
 </footer>
 
