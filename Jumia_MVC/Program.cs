@@ -16,6 +16,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using Jumia_MVC.Data.Favorite;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,7 @@ builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
 builder.Services.AddScoped(fp => FavoriteProduct.GetFavoriteProduct(fp));
 
+builder.Services.AddRazorPages();
 //add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                  .AddEntityFrameworkStores<ApplicationDBContext>()
@@ -104,6 +106,7 @@ app.MapDefaultControllerRoute();
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
 AppDbInitializer.Seed(app);
 //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+
 
 
 app.Run();

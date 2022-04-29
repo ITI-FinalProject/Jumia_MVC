@@ -30,7 +30,7 @@ else
                                     @if (User.IsInRole("User"))
                                      {
                                           <li>
-                                     <a class="dropdown-item" asp-action="UserProfile" asp-controller="Account">
+                                     <a class="dropdown-item" asp-action="Edit" asp-controller="User">
                                          <i class="bi bi-person-circle"></i>@localizer["Profile"]
                                      </a>
                                  </li>

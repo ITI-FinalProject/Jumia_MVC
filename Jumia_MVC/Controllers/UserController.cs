@@ -114,11 +114,32 @@ namespace Jumia_MVC.Controllers
                 Id = Id,
                 FullName = user.UserName,
                 Email = user.Email,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Address = user.Address,
+                Phone =user.PhoneNumber
             };
 
             return View(viewModel);
         }
+
+        //public async Task<IActionResult> Edit(string Id)
+        //{
+        //    var user = await _userManager.FindByIdAsync(Id);
+
+        //    if (user == null)
+        //        return NotFound();
+
+
+        //    var viewModel = new ProfileModelVM
+        //    {
+        //        Id = Id,
+        //        FullName = user.UserName,
+        //        Email = user.Email,
+        //        UserName = user.UserName
+        //    };
+
+        //    return View(viewModel);
+        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProfileModelVM model)

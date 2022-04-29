@@ -1,5 +1,6 @@
 ﻿using FinalProject.MVC.Data.statics;
 using FinalProject.MVC.Data.ViewModel;
+using Jumia_MVC.Data.ViewModel;
 using Jumia_MVC.Models;
 using Jumia_MVC.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -108,16 +109,12 @@ namespace Jumia_MVC.Controllers
 
         }
 
-    //public async Task< IActionResult > UserProfile()
-    //    {
-    //        var user = await _userManager.Users.ToListAsync();
-    //        return View(UserProfile);
-    //    }
-    [HttpGet , Authorize]
-        public ActionResult UserProfile()
-        {
-            return View();
-
-        }
+        //public async Task< IActionResult > UserProfile()
+        //    {
+        //        var user = await _userManager.Users.ToListAsync();
+        //        return View(UserProfile);
+        //    }
+      
+        
     }
 }
