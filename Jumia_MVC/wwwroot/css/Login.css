@@ -76,15 +76,15 @@ h1 {
 
 .b1 {
     background-color: #FBB03B;
-    border-block-color: #FBB03B;
-    color: white;
+/*    border-block-color: #FBB03B;
+*/    color: white;
     box-shadow: 3px 3px 5px lightgray;
     padding-right:3px;
 }
 
     .b1:hover {
-        border-color: #FBB03B;
-        color: #FBB03B;
+/*        border-color: #FBB03B;
+*/        color: #FBB03B;
         background-color: white;
     }
 
@@ -94,8 +94,8 @@ h1 {
 
     .b2:hover {
         background-color: #f9d597;
-        border-block-color: #f9d597;
-        color: white;
+/*        border-block-color: #f9d597;
+*/        color: white;
     }
 
 .dontHaveAcc {
