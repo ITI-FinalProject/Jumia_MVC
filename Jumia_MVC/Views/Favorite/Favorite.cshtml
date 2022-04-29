@@ -36,13 +36,13 @@
     }
     .b2{
 /*        border-color:#FBB03B;
-*/        color:#FBB03B; 
+*/        color:#ff8d00; 
 
     }
-    .b2:hover{
-        background-color:#FBB03B;
-        border-block-color:#FBB03B;
-        color:white;
+    .b2:hover {
+        background-color: #f9d597;
+        border-block-color: #f9d597;
+        color: white;
     }
     .b1{
         background-color:#FBB03B;
@@ -54,6 +54,10 @@
         border-color:#FBB03B;
         color:#FBB03B;
         background-color:white;
+    }
+    .card-img-top {
+        height:97%;
+        padding-left:3px;
     }
     /*.col-sm-9{
         width:100%;
@@ -70,7 +74,7 @@
             @foreach (var item in Model.Favorite.FavoriteItems)
                 {
                     <div class="item d-flex ">
-                        <a asp-action="Details" asp-route-id="@item.Product.Id" class="align-middle col-2"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" style="height:100px" /></a> 
+                        <a asp-action="Details" asp-route-id="@item.Product.Id" class="align-middle col-2"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" @*style="height:100px"*@ /></a> 
                         <div class="align-middle col-6 p-2" ><div> @item.Product.Name<pre>
                         </pre></div>
                         <div class="styleprice align-middle"><p class="card-text text-muted ">@item.Product.Price.ToString("c")</p>
