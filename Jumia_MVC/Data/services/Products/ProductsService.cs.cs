@@ -1,10 +1,6 @@
-﻿using FinalProject.MVC.Data.ViewModel;
-using Jumia_MVC.Data;
-using Jumia_MVC.Data.Base;
-using Jumia_MVC.Models;
-using Microsoft.EntityFrameworkCore;
+﻿
 
-namespace FinalProject.MVC.Data.services.Products
+namespace Jumia_MVC.Data.services
 {
     public class ProductsService :EntityBaseRepository<Product>, IProductsService
     {

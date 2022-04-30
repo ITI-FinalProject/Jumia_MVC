@@ -24,16 +24,16 @@ namespace Jumia_MVC.Controllers
             _userManager = userManager;
 
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var users = await _userManager.Users.Select(user => new UserViewModel
+            var users =  _userManager.Users.Select(user => new UserViewModel
             {
                 Id = user.Id,
                 FullName = user.FullName,
                 UserName = user.UserName,
                 Emaill = user.Email,
                 Roles = _userManager.GetRolesAsync(user).Result
-            }).ToListAsync();
+            }).ToList();
             //  var res = await _context.Users.ToListAsync();
 
             return View(users);

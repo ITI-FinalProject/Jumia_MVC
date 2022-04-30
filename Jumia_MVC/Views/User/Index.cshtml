@@ -6,6 +6,11 @@
 
 <h1>Users</h1>
 
+<div id="alertShow" class="alert alert-success alert-dismissible fade show mt-5 d-none" role="alert">
+  User Delete Sucess
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <table class="table table-striped mt-4">
     <thead>
         <tr class="bg-dark text-white">
@@ -31,12 +36,119 @@
 
                 
 
-                <a class="btn btn-danger js-delete" href="Javascript:;" data-id="@user.Id">
-                    <i class="bi bi-trash"></i>Delete </a>
+               <a   class="btn btn-danger js-delete"   data-id="@user.Id">
+                  <i class="bi bi-trash"></i>Delete </a>
+  @*                  
+           <button type="button"class="btn btn-danger" id="delete" value="@user.Id" onclick="hello(value);">
+                 <i class="bi bi-trash"></i>Delete </button>*@
+
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-@await Html.PartialAsync("CustomButton","User")
+@*
+<script type="text/javascript">
+    function hello(Value) {
+           var btn= $(this);
+           console.log(btn)
+          
+           //var result = confirm("Are you sure that you need to delete this user?");
+            bootbox.confirm({
+    message: "Are you sure that you need to delete this user?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-danger'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-secondary'
+        }
+    },
+    callback: function (result) {
+        if(result){
+            $.ajax({
+                url:'/api/Users/?userId='+value,
+                method:"Delete",
+                 success: function(data){
+                         // btn.parents('tr').fadeOut();
+                          btn.parents('tr').fadeOut();
+                          alert("user Delete");
+                          $('#alertShow').removeClass('d-none')
+                          //setTimeout(Function() {
+                          //$('#alertShow').addClass('d-none')
+
+                          //},2000)
+                          },
+                errot:function(){
+                        alert("Some thing with wrong");
+                }
+                
+            });
+        }
+    }
+});
+       
+          
+
+    }
+ </script>*@
+
+
+@section Scripts{
+ <script >
+          $(document).ready(function (){
+               $('.js-delete').on('click', function () {
+
+                  var btn= $(this);
+          
+          
+                 bootbox.confirm({
+    message: "Are you sure that you need to delete this user?",
+    buttons: {
+        confirm: {
+            label: 'Yes',
+            className: 'btn-danger'
+        },
+        cancel: {
+            label: 'No',
+            className: 'btn-secondary'
+        }
+    },
+    callback: function (result) {
+
+        if(result){
+            $.ajax({
+                url:'/api/UsersApi/?userId='+btn.data('id'),
+                method:"Delete",
+                 success: function(data){
+                          btn.parents('tr').fadeOut();
+                          //alert("user Delete");
+                          $('#alertShow').removeClass('d-none')
+                          setTimeout(function() {  $('#alertShow').addClass('d-none');},3000);
+                        
+                          },
+                errot:function(){
+                        alert("Some thing with wrong");
+                }
+                
+            });
+        }
+    }
+});
+            
+
+                    //var result = confirm("Are you sure that you need to delete this user?");
+                    //  var btn= $(this);
+                    //    if (result) {
+                    //console.log(btn.data("id"));
+                    //    }
+               });
+          });
+    </script>
+
+}
+
+         @await Html.PartialAsync("CustomButton","User")

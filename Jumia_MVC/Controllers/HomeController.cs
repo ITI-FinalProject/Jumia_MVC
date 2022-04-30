@@ -1,9 +1,4 @@
-﻿using FinalProject.MVC.Data.services;
-using FinalProject.MVC.Data.services.Products;
-using Jumia_MVC.Models;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Localization;
+﻿
 using System.Diagnostics;
 using System.Dynamic;
 

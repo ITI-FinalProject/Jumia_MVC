@@ -1,6 +1,4 @@
-﻿using FinalProject.MVC.Data.services;
-using Jumia_MVC.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿
 
 namespace Jumia_MVC.Controllers
 {
