@@ -1,27 +1,30 @@
-using FinalProject.MVC.Data.services;
-using FinalProject.MVC.Data.services.Banners;
-using FinalProject.MVC.Data.services.Categores;
-using FinalProject.MVC.Data.services.Products;
-using Jumia_MVC.Data;
-using Jumia_MVC.Data.Cart;
-using Jumia_MVC.Data.services;
-using Jumia_MVC.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
-using Movie_Application.Data;
-using Microsoft.AspNetCore.Mvc.Razor;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
-using Jumia_MVC.Data.Favorite;
-using Microsoft.AspNetCore.Builder;
+
+
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
+                                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+//add cors
+string text = "";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(text,
+    builder =>
+    {
+        builder.AllowAnyOrigin();
+        //  builder.WithOrigins("url");
+        builder.AllowAnyMethod();
+        builder.AllowAnyHeader();
+    });
+});
+
 
 var connection = builder.Configuration.GetConnectionString("DefultConnection");
 builder.Services.AddDbContext<ApplicationDBContext>(
@@ -92,7 +95,7 @@ app.UseSession();
 
 app.UseAuthorization();
 app.UseAuthentication();
-
+app.UseCors(text);
 
 var options = ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>();
 

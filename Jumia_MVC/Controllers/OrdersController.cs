@@ -1,11 +1,4 @@
-﻿using FinalProject.MVC.Data.services.Products;
-using Jumia_MVC.Data.Cart;
-using Jumia_MVC.Data.services;
-using Jumia_MVC.Data.ViewModel;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-using UseScaffold.Custom_Filter;
+﻿
 
 namespace Jumia_MVC.Controllers
 {

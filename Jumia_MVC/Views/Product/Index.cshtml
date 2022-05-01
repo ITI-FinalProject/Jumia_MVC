@@ -43,9 +43,7 @@
                             <a asp-action="Details" asp-route-id="@item.Id">
                                 <img src="@item.Image" class="card-img-top img-fluid rounded" style="height:300px" />
                             </a>
-                            @*     <a href="@Url.Action("Details")" id="@item.Id">
-                                <img src="@Url.Content(@item.Image)" class="card-img-top img-fluid rounded" />
-                                </a>*@
+                          
 
 
 
@@ -81,7 +79,22 @@
 
                                 </div>
                             </div>
-                            <div class="alert alert-dark stylealert">
+                        @if (User.IsInRole("Admin"))
+                        {
+                                <div class="alert alert-dark  d-flex justify-content-between">
+                                 <a   asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" >
+                         <i class="bi bi-pencil-square text-primary btn-lg"></i> </a >
+
+               <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">
+                    <i *ngIf="addToFavourit"
+                     class="bi bi-calendar2-x text-danger btn-lg"
+                     (click)="removeItemFav(item)"></i>
+                </a>
+                </div>
+                        }
+                        else
+                        {
+                                <div class="alert alert-dark stylealert">
                                 <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" onclick="return confirm('success Product Add in Cart ');">
                     <i class="fas fa-cart-plus text-primary"></i> </a >
 
@@ -90,7 +103,10 @@
                      class="fas fa-heart text-primary"
                      (click)="removeItemFav(item)"></i>
                 </a>
-                            </div>
+                       </div>      
+                        }
+                    
+                           
 
                     </div>
                 </div>

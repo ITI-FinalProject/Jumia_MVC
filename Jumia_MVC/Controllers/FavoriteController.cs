@@ -1,7 +1,4 @@
-﻿using FinalProject.MVC.Data.services.Products;
-using Jumia_MVC.Data.Favorite;
-using Jumia_MVC.Data.ViewModel;
-using Microsoft.AspNetCore.Mvc;
+﻿
 namespace Jumia_MVC.Controllers
 {
     public class FavoriteController : Controller

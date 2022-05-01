@@ -1,7 +1,4 @@
-﻿using FinalProject.MVC.Data.services.Products;
-using FinalProject.MVC.Data.ViewModel;
-using Jumia_MVC.Data;
-using Jumia_MVC.Models;
+﻿
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
