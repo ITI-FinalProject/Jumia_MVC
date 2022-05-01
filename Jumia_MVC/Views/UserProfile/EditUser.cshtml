@@ -3,13 +3,13 @@
 
 
 @{
-   ViewData["titel"] = "userProfile";
+    ViewData["Title"] = "Update User";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
-       <p>
-            <h1>UserProfile:@Model.FullName</h1>
+        <p>
+            <h1>Update  User:@Model.FullName</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -18,9 +18,6 @@
 
                             <input type="hidden" asp-for="Id" />
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
                 <div class="form-group">
                  <label asp-for="FullName"></label>
                 <input asp-for="FullName" class="form-control" />
@@ -51,13 +48,15 @@
             </div>
         
         
-                  <div class="form-group my-3">
+                   
+                 
+
+                    <div class="form-group my-3">
                         <input type="submit" value="Update" class="btn btn-outline-success float-right" />
-                        
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-

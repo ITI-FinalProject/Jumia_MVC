@@ -109,12 +109,47 @@ namespace Jumia_MVC.Controllers
 
         }
 
-        //public async Task< IActionResult > UserProfile()
+        //public async Task<ActionResult> UserProfile(string Id)
+        //{
+        //    var user = await _userManager.FindByIdAsync(Id);
+
+        //    if (user == null)
+        //        return NotFound();
+
+
+        //    var viewModel = new ProfileModelVM
         //    {
-        //        var user = await _userManager.Users.ToListAsync();
-        //        return View(UserProfile);
-        //    }
-      
-        
+        //        Id = Id,
+        //        FullName = user.UserName,
+        //        Email = user.Email,
+        //        UserName = user.UserName,
+        //        Address = user.Address,
+        //        Phone = user.PhoneNumber
+        //    };
+
+        //    return View();
+        //}
+
+        public async Task<ActionResult> UserProfile(string Id)
+        {
+            var user = await _userManager.FindByIdAsync(Id);
+
+               if (user == null)
+               return NotFound();
+
+
+            var viewModel = new ProfileModelVM
+            {
+                Id = Id,
+                FullName = user.UserName,
+                Email = user.Email,
+                UserName = user.UserName,
+                Address = user.Address,
+                Phone = user.PhoneNumber
+            };
+            return View(viewModel);
+        }
+
     }
 }
+

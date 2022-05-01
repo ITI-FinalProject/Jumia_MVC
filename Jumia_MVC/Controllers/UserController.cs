@@ -222,5 +222,6 @@ namespace Jumia_MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        
     }
 }

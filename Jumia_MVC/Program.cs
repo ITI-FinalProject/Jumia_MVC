@@ -107,6 +107,10 @@ app.MapDefaultControllerRoute();
 AppDbInitializer.Seed(app);
 //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
-
+//app.MapRazorPages();
+app.UseEndpoints(e =>
+{
+    e.MapRazorPages();
+});
 
 app.Run();
