@@ -6,6 +6,7 @@ using Jumia_MVC.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jumia_MVC.Controllers
@@ -15,13 +16,17 @@ namespace Jumia_MVC.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
+        private readonly IHtmlLocalizer<AccountController> _localizer;
+
         public AccountController(
           UserManager<ApplicationUser> userManager,
-          SignInManager<ApplicationUser> signInManager
+          SignInManager<ApplicationUser> signInManager,
+          IHtmlLocalizer<AccountController> localizer
           )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _localizer = localizer;
         }
         public IActionResult Index()
         {
@@ -42,7 +47,7 @@ namespace Jumia_MVC.Controllers
 
             if (user != null)
             {
-                TempData["Error"] = "This Email is already in use !";
+                TempData["Error"] = _localizer["inUse"];
                 return View(registerVM);
 
             }
@@ -99,11 +104,11 @@ namespace Jumia_MVC.Controllers
                 }
 
 
-                TempData["Error"] = "Wrong Email Credentials. please try again";
+                TempData["Error"] = _localizer["wrong"];
                 return View(loginVM);
 
             }
-            TempData["Error"] = "Wrong password Credentials. please try again";
+            TempData["Error"] = _localizer["wrongPass"];
             return View(loginVM);
 
 

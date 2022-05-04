@@ -1,6 +1,8 @@
 ﻿using FinalProject.MVC.Data.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jumia_MVC.Controllers
@@ -11,9 +13,13 @@ namespace Jumia_MVC.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        private readonly IHtmlLocalizer<RoleController> _localizer;
+
+
+        public RoleController(RoleManager<IdentityRole> roleManager, IHtmlLocalizer<RoleController> localizer)
         {
             _roleManager = roleManager;
+            _localizer = localizer;
         }
         public async Task<IActionResult> Index()
         {
@@ -31,7 +37,7 @@ namespace Jumia_MVC.Controllers
 
             if (await _roleManager.RoleExistsAsync(model.Name))
             {
-                ModelState.AddModelError("Name", "Role Is Exist !!!");
+                ModelState.AddModelError("Name", _localizer["exist"].ToString());
                 return View("Index", await _roleManager.Roles.ToListAsync());
             }
 
@@ -84,7 +90,7 @@ namespace Jumia_MVC.Controllers
                     View("NotFound");
             }
             else
-                ModelState.AddModelError("", "No role found");
+                ModelState.AddModelError("", _localizer["wrong"].ToString());
             return View("Index", _roleManager.Roles);
 
         }

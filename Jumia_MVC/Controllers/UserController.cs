@@ -3,6 +3,7 @@ using Jumia_MVC.Data.ViewModel;
 using Jumia_MVC.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Jumia_MVC.Controllers
@@ -14,14 +15,18 @@ namespace Jumia_MVC.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        private readonly IHtmlLocalizer<UserController> _localizer;
+        
 
         public UserController(
              UserManager<ApplicationUser> userManager,
-             RoleManager<IdentityRole> roleManager
+             RoleManager<IdentityRole> roleManager,
+             IHtmlLocalizer<UserController> localizer
              )
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _localizer = localizer;
 
         }
         public IActionResult Index()
@@ -62,18 +67,18 @@ namespace Jumia_MVC.Controllers
 
             if (!model.Roles.Any(r => r.IsSelected))
             {
-                ModelState.AddModelError("Roles", "Please select at lest one row");
+                ModelState.AddModelError("Roles", _localizer["selectOne"].ToString());
                 return View(model);
             }
 
             if (await _userManager.FindByEmailAsync(model.Email) != null)
             {
-                ModelState.AddModelError("Email", "Email is already Exists");
+                ModelState.AddModelError("Email", _localizer["Exists"].ToString());
                 return View(model);
             }
             if (await _userManager.FindByNameAsync(model.UserName) != null)
             {
-                ModelState.AddModelError("UserName", "UserName is already Exists");
+                ModelState.AddModelError("UserName", _localizer["userExists"].ToString());
                 return View(model);
             }
             var user = new ApplicationUser
@@ -154,7 +159,7 @@ namespace Jumia_MVC.Controllers
 
             if (userWithSameEmail != null && userWithSameEmail.Id != model.Id)
             {
-                ModelState.AddModelError("Email", "This Email Is Alerady assigned to anther User");
+                ModelState.AddModelError("Email", _localizer["EmailExists"].ToString());
                 return View(model);
             }
 
@@ -162,7 +167,7 @@ namespace Jumia_MVC.Controllers
 
             if (userWithSameuserName != null && userWithSameuserName.Id != model.Id)
             {
-                ModelState.AddModelError("UserName", "This UserName Is Alerady assigned to anther User");
+                ModelState.AddModelError("UserName", _localizer["userNameExists"].ToString());
                 return View(model);
             }
 
