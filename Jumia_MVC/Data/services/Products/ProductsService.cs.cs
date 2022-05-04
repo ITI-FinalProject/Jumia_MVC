@@ -42,7 +42,7 @@ namespace Jumia_MVC.Data.services
 
        public async Task<Product>  GetProductByIdAsync(int id)
         {
-            var res = await _context.Products.Include(e => e.Category).Include(x => x.Images).Include(s => s.Sizes).Include(c => c.Colors).Include(cm => cm.Comments)
+            var res = await _context.Products.Include(e => e.Category).Include(x => x.Images).Include(s => s.Sizes).Include(c => c.Colors).Include(cm => cm.Comments).Include(x => x.Comments).ThenInclude(y => y.User)
                                   .FirstOrDefaultAsync(e => e.Id == id);
             return res;
         }

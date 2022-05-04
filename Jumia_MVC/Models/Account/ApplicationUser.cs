@@ -14,5 +14,7 @@ namespace Jumia_MVC.Models
         [Display(Name = "Address")]
 
         public string? Address { get; set; }
+        public virtual List<Comments>? Comments { get; set; }
+
     }
 }
