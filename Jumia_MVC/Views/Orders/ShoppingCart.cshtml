@@ -1,126 +1,260 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
 
-@using Jumia_MVC.Data.ViewModel
-@model ShoppingCartVM
 
 @{ 
     ViewData["Title"] = localizer["title"];
 }
-
-
-@if (Model.ShoppingCart.ShoppingCartItems.Count()==0)
-{
-     <div class="row g-0 mt-6 ">
-           <div class="container pt-5">
-        <div class="card"
-            dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
-            <h5 class="card-title">@localizer["MyCart"]</h5>
-        </div>
-    
-        <div class="text-center">
-            <img src="https://www.metro-markets.com/plugins/user/images/emptycart.png" alt="">
-            <h4>@localizer["empty"] </h4>
-            <h6>@localizer["Browse"] </h6>
-            <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index"  >@localizer["shop"]</a>
-        </div>
-    </div>
-         </div>
-    
-}else{
+<div class="progress">  
+   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" id="lblStatus">  
+</div>  
+</div>
     <div class="row g-0 mt-6 mx-3">
     <div class="col-md-8 offset-2"
         dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
 
-        <p>
-            <h4>@localizer["yourCart"] </h4>
+         <div id="cartempty"  class="row g-0 mt-6 ">
+        
+         </div>
+        <p id="pro">
+            
         </p>
+          <div id="progress" class="modal-dialog modal-dialog-centered"  tabindex="-1" >
+        <div class="center">
+            <img src="~/image/loading.gif" />
+        </div>
+    </div>
 
-        <table class="table  table-hover table-bordered table-responsive">
-            <thead>
-                <tr>
-                    <th>@localizer["Product"] </th>
+   
+       
+        <table id="records_table" class="table table-hover table-bordered table-responsive">
+           
+           
+        </table>
+        
+        <div id="addButton" class="text-right">
+            </div>
+
+        </div>
+        </div>
+         
+
+
+@section Scripts{
+  
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+   <script type="text/javascript" >  
+       var alldata;
+
+      $( document ).ready(function() {
+       $('#progress').show();
+       getAlldata();
+    });
+   
+   
+ 
+    function createTable(data){
+                          var res=data.shoppingCart.shoppingCartItems;
+
+                          records_table.innerHTML="";
+                          pro.innerHTML="";
+                             pro.innerHTML=`<h4>@localizer["yourCart"] </h4>`;
+                                   let trH = document.createElement("tr");
+                                   let head = document.createElement("thead");
+                          let stahtml=`<th>@localizer["Product"] </th>
                     <th>@localizer["Amount"] </th>
                     <th>@localizer["Price"] </th>
                     <th>@localizer["Total"] </th>
-                    <th>@localizer["Ammount"] </th>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <th>@localizer["User"] </th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
-                {
-                <tr>
-                    
-                    <td class="align-middle">
-                        <div>
-                             <img src="@item.Product.Image" width="150px" class="img-thumbnail rounded float-start px-4">
+                    <th>@localizer["Ammount"] </th>`;
+                        trH.innerHTML += stahtml;
+                      //  trH.append(stahtml);
+                       head.append(trH);
+                        records_table.append(head);
+                         let body = document.createElement("tbody");
+
+                     res.forEach(function(e) {
+                                 let element_tr = document.createElement("tr");
+
+                                 let td_name = document.createElement("td");
+                                  td_name.setAttribute("class","align-middle");
+
+                                 let td_amount = document.createElement("td");
+                                 td_amount.setAttribute("class","align-middle");
+
+                                 let td_price = document.createElement("td");
+                                 td_price.setAttribute("class","align-middle");
+
+                                 let td_total = document.createElement("td");
+                                 td_total.setAttribute("class","align-middle");
+
+                                  let td_show = document.createElement("td");
+                                 td_show.setAttribute("class","align-middle");
+
+                                 td_name.innerHTML=` <div>
+                             <img src="${e.product.image}" width="150px" class="img-thumbnail rounded float-start px-4">
                              <span style="padding-left=10px"></span>
                               <div class="flex-column mx-4 px-3">
-                                          <p class="px-4" >@item.Product.Name</p>
-                                           <a class="btn btn-danger bg-danger text-white">@localizer["Remove"]</a>
-                                 </div>
-                        </div>
-                        </td>
-                    <td class="align-middle">@item.Amount</td>
-                    <td class="align-middle">@item.Product.Price</td>
-                    <td class="align-middle">@((item.Amount*item.Product.Price).ToString("c", new System.Globalization.CultureInfo("en-US")))</td>
-                    <td class="align-middle">
-                         <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
-                               asp-route-id="@item.Product.Id">
-                                <i class="bi bi-cart-dash"></i>
-                            </a>
-                            |
-                            <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart"
-                               asp-route-id="@item.Product.Id">
-                                <i class="bi bi-cart-plus"></i>
-                            </a>
-                    </td>
-                   
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2"></td>
-                    <td><b>@localizer["Total:"] </b></td>
-                    <td>
-                        @Model.ShoppingCartTotal.ToString("c", new System.Globalization.CultureInfo("en-US"))
-                    </td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
+                                          <p class="px-4" >${e.product.name}</p>
 
-        <div class="text-right">
-            <div class="btn-group">
-            @*    <a class="btn btn-outline-primary" asp-Controller="Orders" asp-action="CompletOrder">
-                        Complete order
-                    </a>*@
-               @* <div id="paypal-btn"></div>
-                <span style="padding:5px"></span>*@
+@*                                           <a class="btn btn-danger bg-danger text-white removeItem"data-itemid="@item.Product.Id">Remove</a>
+*@
+                                           <a class="btn btn-danger bg-danger text-white ">@localizer["Remove"]</a>
+
+                                 </div>
+                        </div>`;
+                                 td_amount.innerHTML=e.amount;
+                                 td_price.innerHTML=e.product.price+`<span>$</span>`;
+                                 td_total.innerHTML=e.amount*e.product.price+`<span>$</span>`;
+
+                            //     td_show.innerHTML=`<a class="text-danger removeItem" 
+                            //   data-id="${e.product.id} onclick="deleteproduct(${e.product.id});">
+                            //    <i class="bi bi-cart-dash"></i>
+                            //</a>
+                            //|   
+                            // <a class="text-success removeItem" 
+                            //   data-id="${e.product.id} onclick="addItem(${e.product.id});">
+                            //    <i class="bi bi-cart-plus"></i>
+                            //</a>`;
+
+                                  td_show.innerHTML=`<button class="text-danger stylebutton" 
+                               onclick="deleteproduct(${e.product.id});">
+                                <i class="bi bi-cart-dash"></i>
+                            </button>
+                            |   
+                             <button class="text-success  stylebutton" 
+                               data-id="${e.product.id}" onclick="addItem(${e.product.id});">
+                                <i class="bi bi-cart-plus"></i>
+                            </button>`;
+                           
+
+                             element_tr.append(td_name);
+                             element_tr.append(td_amount);
+                             element_tr.append(td_price);
+                             element_tr.append(td_total);
+                             element_tr.append(td_show);
+
+                           body.append(element_tr);
+
+                     });
+                          records_table.append(body);
+                          
+                                  let foter = document.createElement("tfoot");
+                                  let foote_tr = document.createElement("tr");
+
+                                  let td_col = document.createElement("td");
+                                 td_col.setAttribute("class","align-middle");
+                                  let td_tot = document.createElement("td");
+                                  let td_totAll = document.createElement("td");
+                                  let td_emp = document.createElement("td");
+
+                                  td_col.colSpan=2;
+                                  td_tot.innerHTML=`<b>Total:</b>`;
+                                  td_totAll.innerHTML=data.shoppingCartTotal+`<span>$</span>`;
+
+                                  foote_tr.append(td_col);
+                                  foote_tr.append(td_tot);
+                                  foote_tr.append(td_totAll);
+                                  foote_tr.append(td_emp);
+
+                                  foter.append(foote_tr);
+                                   records_table.append(foter);
+                                   createButton();
+                                          Addpayment(data.shoppingCartTotal);
+     
+  }
+  function emptyCart(){
+                                   console.log("empty");
+                            let e=document.getElementById("cartempty");
+                            cartempty.innerHTML="";
+                            let check=document.createElement("p");
+                            check.innerHTML=`  <div class="container pt-5">
+                                     <div class="card"
+                              dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+            <h5 class="card-title">@localizer["MyCart"]</h5>
+            </div>
+    
+           <div class="text-center">
+            <img src="https://www.metro-markets.com/plugins/user/images/emptycart.png" alt="">
+            <h4>@localizer["empty"] </h4>
+            <h6>@localizer["Browse"] </h6>
+            <button class="btn btn-outline-success" onClick="gotoProduct();"   >@localizer["shop"]</button>
+                        </div>`;
+
+                cartempty.append(check);
+                  records_table.innerHTML="";
+                   pro.innerHTML="";
+                     addButton.innerHTML="";
+
+
+  }
+  function createButton(){
+      addButton.innerHTML="";
+      let creatediv=document.createElement("div");
+      //creatediv.id="paypal-btn";
+      creatediv.innerHTML=`<div class="btn-group">
+          
                  <div id="paypal-btn">
 
                    </div>
                     <span style="padding:5px"></span>
-                <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index">
+                <button class="btn btn-outline-success"  onClick="gotoProduct();" >
                     @localizer["add"]
-                </a>
-            </div>
-        </div>
+                </button>
+            </div>`;
+   
+      addButton.append(creatediv);
+  }
 
-    </div>
-</div>
-}
+    
+     
 
+    function Addpayment(total){
+                   
+        //let _total = @Html.Raw(Model.ShoppingCartTotal);
+        paypal.Button.render({
+            //Configure environment
+            env: 'sandbox',
+            client: {
+                sandbox: 'AcKRtgL4i68EZ2ZYuYUx3ilihAg2YhL5dtF_m19A8MjBWVOn6ewNS4M_uV8gA3xi98zTcUq38gUHbVFx'
+            },
+            //Customize button
+            locale: 'en_US',
+            style: {
+                size: 'small',
+                color: 'gold',
+                shape: 'pill'
+            },
+            commit: true,
+            //Set up a payment
+            payment: function (data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: {
+                            total: total,
+                            currency: 'USD'
+                        }
+                    }]
+                });
+            },
+            //Execute the payment
+            onAuthorize: function (data, actions) {
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompletOrder","Orders", new { })';
+                    window.location.href = url;
+                });
+            }
+        }, '#paypal-btn')
+    
+               }
 
-@section Scripts{
+   function gotoProduct(){
+                    var url = '@Url.Action("Index","Product", new { })';
+                    window.location.href = url;
+        }
+    </script>
 
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-
-    <script>
+   
+    @*<script>
         let _total = @Html.Raw(Model.ShoppingCartTotal);
         paypal.Button.render({
             //Configure environment
@@ -155,5 +289,64 @@
                 });
             }
         }, '#paypal-btn')
-    </script>
+    </script>*@
+
+  
+
+
+@*  <script >
+          $(document).ready(function (){
+               $('.addItemInCardd').on('click', function () {
+
+                  var btn= $(this);
+          
+          
+        
+            
+
+                  // var result = confirm("Are you sure that you need to delete this user?");
+                    //  var btn= $(this);
+                    //    if (result) {
+                    //console.log(btn.data("id"));
+                    //    }
+               });
+          });
+    </script>*@
+         
+    
+    
+  @*  <script >
+          $(document).ready(function (){
+               $('.removeItem').on('click', function () {
+
+                  var btn= $(this);
+
+                   $.ajax({
+                url:'/api/OrdersApi/'+btn.data('id'),
+                method:"delete",
+                 success: function(data){
+                         //console.log(data);
+
+                          btn.parents('tr').fadeOut();
+                          //alert("user Delete");
+                        //  $('#alertShow').removeClass('d-none')
+                         // setTimeout(function() {  $('#alertShow').addClass('d-none');},3000);
+                        
+                          },
+                errot:function(){
+                        alert("Some thing with wrong");
+                }
+                
+            });
+          
+          
+               });
+          });
+    </script>*@
+
+  
 }
+
+
+
+

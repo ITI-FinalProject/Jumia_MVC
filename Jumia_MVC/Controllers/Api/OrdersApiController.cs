@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 
 namespace Jumia_MVC.Controllers.Api
@@ -20,8 +21,9 @@ namespace Jumia_MVC.Controllers.Api
             _shoppingCart = shoppingCart;
             _ordersService = orderService;
         }
-
+        //  [MyAuthorize]
         [HttpGet]
+        // [Authorize(Roles = "User")]
         [MyAuthorize]
         public IActionResult ShoppingCart()
         {
@@ -33,12 +35,13 @@ namespace Jumia_MVC.Controllers.Api
                 ShoppingCart = _shoppingCart,
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
             };
-            //var jsonn=JsonConvert.SerializeObject(response);
-          //  return Json();
+
             return Ok(response);
         }
 
+        //   
         [HttpPut("{id}")]
+        // [Authorize(Roles = "User")]
         [MyAuthorize]
         public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
@@ -62,5 +65,6 @@ namespace Jumia_MVC.Controllers.Api
             }
             return Ok();
         }
+
     }
 }
