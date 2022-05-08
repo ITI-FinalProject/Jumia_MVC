@@ -136,3 +136,55 @@ function addItem(id) {
 
 
 }
+//favourit
+
+function AddItemINFavourit(id) {
+    $.ajax({
+        url: '/api/FavouritApi/' + id,
+        method: "put",
+        success: function (data) {
+           // $('#changeheart').removeClass("fa-regular");
+           // $('#changeheart').addClass("fa-solid");
+            swal({
+                title: "Done",
+                text: "Product Add To Favourit",
+                icon: "success",
+                button: "Ok",
+            });
+        },
+        errot: function () {
+            alert("Some thing with wrong");
+        }
+
+    });
+
+}
+
+function deleteFavourit(id) {
+    $.ajax({
+        url: '/api/FavouritApi/' + id,
+        method: "delete",
+        success: function (data) {
+            console.log(data);
+            //$('#progress').hide();
+            //$('#records_table').show();
+            //$('#addButton').show();
+
+            updatecartCount();
+            getAlldata();
+
+            swal({
+                title: "Done",
+                text: "Product Delete From Favourit",
+                icon: "success",
+                button: "Ok",
+            });
+            // this.parents('tr').fadeOut();
+
+        },
+        errot: function () {
+            alert("Some thing with wrong");
+        }
+
+    });
+}

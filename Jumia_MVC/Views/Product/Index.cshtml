@@ -97,15 +97,13 @@
                                 <div class="alert alert-dark stylealert">
                                                @if (User.Identity.IsAuthenticated)
                             {
-                               <a   class="addItemInCard"  data-id="@item.Id" >
-                               <i class="fas fa-cart-plus text-primary"></i> </a > 
-                                  <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id">
-                    <i *ngIf="addToFavourit"
-                     class="fas fa-heart text-primary"
-                     (click)="removeItemFav(item)"></i>
+                               <a   class="addItemInCard itemHover"  data-id="@item.Id" >
+                               <i  class="fas fa-cart-plus text-primary"></i> </a > 
+                                <a class="addItemInFav itemHover" data-id="@item.Id">
+                    <i  id="changeheart" class="fa-solid fa-heart"></i>
                 </a>
                             }else{
-                                                    <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" >
+                                  <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" >
                     <i class="fas fa-cart-plus text-primary"></i> </a >
 
                <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id">
@@ -169,7 +167,15 @@
                     AddItemINCard(btn.data('id'));
             
                });
-   
+                $('.addItemInFav').on('click', function () {
+
+                  var btn= $(this);
+          
+  
+                    AddItemINFavourit(btn.data('id'));
+            
+               });
+                   
           });
 
                      

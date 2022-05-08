@@ -1,16 +1,20 @@
-﻿
-namespace Jumia_MVC.Controllers
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Jumia_MVC.Controllers.Api
 {
-    public class FavoriteController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class FavouritApiController : ControllerBase
     {
         private readonly IProductsService _productsService;
         private readonly FavoriteProduct _favorite;
-        public FavoriteController(IProductsService productsService, FavoriteProduct favorite)
+        public FavouritApiController(IProductsService productsService, FavoriteProduct favorite)
         {
             _productsService = productsService;
             _favorite = favorite;
         }
-        [MyAuthorize]
+        [HttpGet]
         public IActionResult Favorite()
         {
             var items = _favorite.GetFavoriteItems();
@@ -20,19 +24,23 @@ namespace Jumia_MVC.Controllers
                 Favorite = _favorite,
             };
 
-            return View(response);
+            return Ok(response);
         }
-
-        public async Task<RedirectToActionResult> AddItemToFavorite(int id)
+        [HttpPut("{id}")]
+        // [Authorize(Roles = "User")]
+        [MyAuthorize]
+        public async Task<IActionResult> AddItemToFavorite(int id)
         {
             var item = await _productsService.GetProductByIdAsync(id);
             if (item != null)
             {
                 _favorite.AddItemToFavorite(item);
             }
-            return RedirectToAction(nameof(Favorite));
+            return Ok(item);
         }
-
+        [HttpDelete("{id}")]
+        // [Authorize(Roles = "User")]
+        [MyAuthorize]
         public async Task<IActionResult> RemoveItemFromFavorite(int id)
         {
             var item = await _productsService.GetProductByIdAsync(id);
@@ -40,7 +48,8 @@ namespace Jumia_MVC.Controllers
             {
                 _favorite.RemoveItemFromFavorite(item);
             }
-            return RedirectToAction(nameof(Favorite));
+            return Ok();
         }
     }
+
 }

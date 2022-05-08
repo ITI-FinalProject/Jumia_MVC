@@ -206,13 +206,13 @@
                             {
                                      <a   onclick="AddItemINCard(@Model.Id)" class="addItemInCard add-to-cart btn btn-default">add to cart</a >
 @*							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-*@                          <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@Model.Id">
+*@                          <a onclick="AddItemINFavourit(@Model.Id)"  class="addItemInCard">
                               	<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                             </a>
                             }else{
-                               <a  asp-action="AddItemToShoppingCart" asp-controller="Orders" class="addItemInCard add-to-cart btn btn-default">add to cart</a >
+                               <a  asp-action="Login" asp-controller="Account" class="addItemInCard add-to-cart btn btn-default">add to cart</a >
 @*							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-*@                          <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@Model.Id">
+*@                          <a asp-controller="Account" asp-action="Login" >
                              	<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
                             </a>
 

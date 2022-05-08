@@ -197,6 +197,9 @@ body {
 .addItemInCard:hover {
     cursor: pointer;
 }
+.itemHover:hover {
+    cursor: pointer;
+}
 
 .removeItem:hover {
     cursor: pointer;

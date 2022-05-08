@@ -115,7 +115,7 @@
                         <div class="align-middle col-1"></div>
                         <div>
                             <div class="btn-group">
-                                    <a class="btn b1" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Product.Id">
+                                    <a class="btn b1 addItemInCard" onclick="AddItemINCard(@item.Product.Id)"  >
                                         <i class="fas fa-cart-plus"><partial></i><span> @localizer["add"]</span>
                                     </a>
                                 
@@ -124,7 +124,7 @@
                             </pre>
                         <div class="align-middle">
                                 <div class="btn-group">
-                                    <a class="btn b2" asp-controller="Favorite" asp-action="RemoveItemFromFavorite" asp-route-id="@item.Product.Id">
+                                    <a class="btn b2" asp-controller="Favorite" asp-action="RemoveItemFromFavorite" asp-route-id="@item.Product.Id" data-id="@item.Product.Id" >
                                        <i class="bi bi-trash"></i><span>@localizer["Remove"]</span></a>
                                 
                                 </div>
@@ -146,4 +146,36 @@
         </div>
     
 
+        }
+
+
+@section Scripts{
+    <script >
+          $('.remove-fvourit').on('click', function () {
+                                var btn= $(this);
+
+                $.ajax({
+        url: '/api/FavouritApi/' +btn.data('id'),
+        method: "delete",
+        success: function (data) {
+                       btn.parents('tr').fadeOut();
+
+       
+
+            swal({
+                title: "Done",
+                text: "Product Delete From Favourit",
+                icon: "success",
+                button: "Ok",
+            });
+            // this.parents('tr').fadeOut();
+
+        },
+        errot: function () {
+            alert("Some thing with wrong");
+        }
+
+    });
+          });
+   </script>
         }

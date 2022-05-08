@@ -7,6 +7,8 @@ namespace Jumia_MVC.Data.Favorite
     {
         public ApplicationDBContext _context { get; set; }
         public string FavoriteId { get; set; }
+        public string userCartId { get; set; }
+
         public List<FavoriteItem> FavoriteItems { get; set; }
         public FavoriteProduct(ApplicationDBContext context)
         {
@@ -20,8 +22,10 @@ namespace Jumia_MVC.Data.Favorite
 
             string favoriteId = session.GetString("FavoriteId") ?? Guid.NewGuid().ToString();
             session.SetString("FavoriteId", favoriteId);
+            string userId = session.GetString("USERID") ?? Guid.NewGuid().ToString();
 
-            return new FavoriteProduct(context) { FavoriteId = favoriteId };
+
+            return new FavoriteProduct(context) { FavoriteId = favoriteId, userCartId = userId };
         }
 
         public void AddItemToFavorite(Product product)
@@ -34,13 +38,14 @@ namespace Jumia_MVC.Data.Favorite
                 {
                     FavoriteId = FavoriteId,
                     Product = product,
+                    UserId = userCartId,
                     Amount = 1
                 };
                 _context.FavoriteItems.Add(favoriteItem);
             }
             else
             {
-                favoriteItem.Amount++;
+               // favoriteItem.Amount++;
             }
             _context.SaveChanges();
         }
@@ -65,13 +70,10 @@ namespace Jumia_MVC.Data.Favorite
 
         public List<FavoriteItem> GetFavoriteItems()
         {
-            return FavoriteItems ?? (FavoriteItems = _context.FavoriteItems.Where(n => n.FavoriteId == FavoriteId).Include(n => n.Product).ToList());
+            return FavoriteItems ?? (FavoriteItems = _context.FavoriteItems
+                 .Where(n => n.FavoriteId == FavoriteId && n.UserId == userCartId).Include(n => n.Product).ToList());
         }
 
-        public double GetFavoriteTotal()
-        {
-            var total = _context.FavoriteItems.Where(n => n.FavoriteId == FavoriteId).Select(n => n.Product.Price * n.Amount).Sum();
-            return total;
-        }
+       
     }
 }

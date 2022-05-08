@@ -95,16 +95,16 @@
                     }*@
                              @if (User.Identity.IsAuthenticated)
                             {
-                                      <a class="addItemInCard"  onclick="AddItemINCard(@item.Id)">
+                                      <a class="itemHover "  onclick="AddItemINCard(@item.Id)">
                                        <i class="fas fa-cart-plus text-primary"></i> </a >
           
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
+                                        <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
                                          <i class="fas fa-heart text-primary"></i> </a>
                             }else{
-                                 <a class="addItemInCard"  asp-action="AddItemToShoppingCart" asp-controller="Orders">
+                                 <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
                                        <i class="fas fa-cart-plus text-primary"></i> </a >
           
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
+                                        <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
                                          <i class="fas fa-heart text-primary"></i> </a>
 
                             }
@@ -179,18 +179,18 @@
                             </div>
                         </div>
                         <div class="alert alert-dark stylealert">
-                             @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity.IsAuthenticated)
                             {
-                                      <a class="addItemInCard"  onclick="AddItemINCard(@item.Id)">
+                                      <a class="itemHover "  onclick="AddItemINCard(@item.Id)">
                                        <i class="fas fa-cart-plus text-primary"></i> </a >
           
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
+                                        <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
                                          <i class="fas fa-heart text-primary"></i> </a>
                             }else{
-                                 <a class="addItemInCard"  asp-action="AddItemToShoppingCart" asp-controller="Orders">
+                                 <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
                                        <i class="fas fa-cart-plus text-primary"></i> </a >
           
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
+                                        <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
                                          <i class="fas fa-heart text-primary"></i> </a>
 
                             }
@@ -349,18 +349,18 @@
                 (click)="addToCart(item)">
                 <i class="fas fa-cart-plus text-primary"></i>
               </button>*@
-                             @if (User.Identity.IsAuthenticated)
+                           @if (User.Identity.IsAuthenticated)
                             {
-                                      <a class="addItemInCard"  onclick="AddItemINCard(@item.Id)">
+                                      <a class="itemHover "  onclick="AddItemINCard(@item.Id)">
                                        <i class="fas fa-cart-plus text-primary"></i> </a >
           
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
+                                        <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
                                          <i class="fas fa-heart text-primary"></i> </a>
                             }else{
-                                 <a class="addItemInCard"  asp-action="AddItemToShoppingCart" asp-controller="Orders">
+                                 <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
                                        <i class="fas fa-cart-plus text-primary"></i> </a >
           
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id"  style="border: none; background-color: #d3d3d4">
+                                        <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
                                          <i class="fas fa-heart text-primary"></i> </a>
 
                             }
