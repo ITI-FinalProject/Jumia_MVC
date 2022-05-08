@@ -2,17 +2,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNet.Identity;
 
 
 namespace Jumia_MVC.Data.Cart
 {
-    public class ShoppingCart
-    {
+    public class ShoppingCart     {
 
 
         public ApplicationDBContext _context { get; set; }
 
         public  string  ShoppingCartId{ get; set; }
+        public  string  userCartId{ get; set; }
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
         //ctor
         public ShoppingCart(ApplicationDBContext context)
@@ -27,20 +28,27 @@ namespace Jumia_MVC.Data.Cart
             var context = services.GetService<ApplicationDBContext>();
 
             string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
-            session.SetString("CartId", cartId);
 
-            return new ShoppingCart(context) { ShoppingCartId = cartId };
+            //string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //var userID = User.Identity.GetUserId();
+
+
+            session.SetString("CartId", cartId);
+            string userId = session.GetString("USERID") ?? Guid.NewGuid().ToString(); 
+
+            return new ShoppingCart(context) { ShoppingCartId = cartId , userCartId = userId};
         }
         //add to cart
         public void AddItemToCart(Product product)
         {
             var ShoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Product.Id == product.Id &&
-            n.ShoppingCartId == ShoppingCartId);
+            n.ShoppingCartId == ShoppingCartId );
             if(ShoppingCartItem == null)
             {
                 ShoppingCartItem = new ShoppingCartItem()
                 {
                     ShoppingCartId = ShoppingCartId,
+                    UserId = userCartId,
                     Product = product,
                     Amount = 1
                 };
@@ -79,7 +87,7 @@ namespace Jumia_MVC.Data.Cart
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             return ShoppingCartItems ?? (ShoppingCartItems = _context.ShoppingCartItems.Where(n => n.ShoppingCartId ==
-            ShoppingCartId).Include(n => n.Product).ToList());
+            ShoppingCartId && n.UserId==userCartId).Include(n => n.Product).ToList());
 
 
            

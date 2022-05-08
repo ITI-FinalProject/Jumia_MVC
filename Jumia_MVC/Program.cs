@@ -38,6 +38,7 @@ builder.Services.AddScoped<IOrdersService, OrdersService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+//builder.Services.AddSingleton(sc => ShoppingCart.GetShoppingCart(sc));
 
 builder.Services.AddScoped(fp => FavoriteProduct.GetFavoriteProduct(fp));
 

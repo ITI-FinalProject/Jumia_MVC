@@ -1,5 +1,7 @@
 ﻿
 
+using Microsoft.AspNet.Identity;
+
 namespace Jumia_MVC.Controllers
 {
     public class OrdersController : Controller
@@ -30,6 +32,7 @@ namespace Jumia_MVC.Controllers
         {
             var item = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = item;
+            
 
             var response = new ShoppingCartVM()
             {
