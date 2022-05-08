@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = localizer["title"] ;
 
+
 }
 
 <!-- Required meta tags -->
@@ -32,8 +33,7 @@
 
     <div class="row g-0"> 
     
-  <body>
-  
+ 
 
   <div class="content">
     
@@ -68,7 +68,7 @@
                <div class="row">
                   <div class="col-md-12 form-group">
                     <input asp-for="Name" type="text" class="form-control" name="Name" id="Name" placeholder="Name">
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <span asp-validation-for="Name" class="text-danger" id="name"></span>
                 </div>
 
                 </div>
@@ -94,16 +94,18 @@
                 </div>  
                 <div class="row">
                   <div class="col-12">
-                    <input style="margin-top:8px;" type="submit" value=@localizer["send"] class="btn btn-primary rounded-0 py-2 px-4">
-                  <span class="submitting"></span>
+                    <input style="margin-top:8px;" type="submit" value=@localizer["send"] class="btn btn-primary rounded-0 py-2 px-4" onclick="validate()" />
+                    <span class="submitting" >
+                      
+                  </span>
                   </div>
                 </div>
               </form>
-
+              
               <div id="form-message-warning mt-4"></div> 
-              <div id="form-message-success">
+             @* <div id="form-message-success">
                 @localizer["confirm"]
-              </div>
+              </div>*@
             </div>
           </div>
         </div>
@@ -111,7 +113,45 @@
     </div>
   </div>
     
-    
+     
+    @* <script>  
+    function validate() {  
+        var name = document.reg_form.name;  
+       
+        if (fname.value.length <= 0) {  
+            alert("Name is required");  
+            fname.focus();  
+            return false;
+        }  
+   }
+</script>  *@
+@*<script>
+function yyy(){
+    var name = document.reg_form.name;  
+       
+        if (fname.value.length <= 0) {  
+            alert("Name is required");  
+            fname.focus();  
+
+            return false;
+        }  
+}*@
+
+
+<script>
+function validate(){
+    var name = document.reg_form.name;  
+       
+        if (fname.value.length <= 0) {  
+            fname.focus();  
+            //return false;
+        }
+            if else{
+                return
+    alert("Thank you , Your message has been send ");
+            }
+}
+</script>
 
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -119,5 +159,4 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/main.js"></script>
 
-  </body>
-</html>
+ 

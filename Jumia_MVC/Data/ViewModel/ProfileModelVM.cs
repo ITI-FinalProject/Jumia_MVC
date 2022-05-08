@@ -26,6 +26,6 @@ namespace Jumia_MVC.Data.ViewModel
         public string UserName { get; set; }
         public string? Address { get; internal set; }
         public string Phone { get; set; }
-
+        public byte[]? Image { get; set; }
     }
 }
