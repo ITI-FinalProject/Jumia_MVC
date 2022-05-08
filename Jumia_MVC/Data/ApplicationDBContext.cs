@@ -11,13 +11,13 @@ namespace Jumia_MVC.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Images>().HasKey(e => new { e.URL, e.ProductId });
-            modelBuilder.Entity<ApplicationUser>().ToTable("Users", "securuty");
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles", "securuty");
-            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UsersRoles", "securuty");
-            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UsersClaims", "securuty");
-            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UsersLogin", "securuty");
-            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "securuty");
-            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UsersToken", "securuty");
+            //modelBuilder.Entity<ApplicationUser>().ToTable("Users", "securuty");
+            //modelBuilder.Entity<IdentityRole>().ToTable("Roles", "securuty");
+            //modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UsersRoles", "securuty");
+            //modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UsersClaims", "securuty");
+            //modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UsersLogin", "securuty");
+            //modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "securuty");
+            //modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UsersToken", "securuty");
             base.OnModelCreating(modelBuilder);
 
         }
@@ -32,6 +32,7 @@ namespace Jumia_MVC.Data
 
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
         public virtual DbSet<FavoriteItem> FavoriteItems { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
 

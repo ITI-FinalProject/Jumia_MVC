@@ -13,5 +13,11 @@ namespace Jumia_MVC.Models
 
 
         public string ShoppingCartId { get; set; }
+        public string? UserId { get; set; }
+        [ForeignKey(nameof(UserId))]
+
+
+
+        public ApplicationUser User { get; set; }
     }
 }

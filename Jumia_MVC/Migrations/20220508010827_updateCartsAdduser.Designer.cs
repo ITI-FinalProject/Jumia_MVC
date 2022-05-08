@@ -4,6 +4,7 @@ using Jumia_MVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.MVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220508010827_updateCartsAdduser")]
+    partial class updateCartsAdduser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,7 +123,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Banners", (string)null);
+                    b.ToTable("Banners");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Category", b =>
@@ -143,7 +145,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorys", (string)null);
+                    b.ToTable("Categorys");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Colors", b =>
@@ -165,7 +167,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Colors", (string)null);
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Comments", b =>
@@ -199,7 +201,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.FavoriteItem", b =>
@@ -224,7 +226,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("FavoriteItems", (string)null);
+                    b.ToTable("FavoriteItems");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Images", b =>
@@ -242,7 +244,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Order", b =>
@@ -265,7 +267,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.OrderItem", b =>
@@ -294,7 +296,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Product", b =>
@@ -345,7 +347,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.ShoppingCartItem", b =>
@@ -376,7 +378,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ShoppingCartItems", (string)null);
+                    b.ToTable("ShoppingCartItems");
                 });
 
             modelBuilder.Entity("Jumia_MVC.Models.Sizes", b =>
@@ -398,7 +400,7 @@ namespace FinalProject.MVC.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Sizes", (string)null);
+                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

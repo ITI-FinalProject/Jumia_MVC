@@ -90,6 +90,8 @@ namespace Jumia_MVC.Controllers
                 return View(loginVM);
             }
             var user = await _userManager.FindByEmailAsync(loginVM.Emaill);
+            HttpContext.Session.SetString("USERID", $"{user.Id}");
+
             if (user != null)
             {
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, loginVM.Password);
@@ -99,6 +101,9 @@ namespace Jumia_MVC.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
                     if (result.Succeeded)
                     {
+                      // HttpContext.Session.GetString("USERID");
+
+
                         return RedirectToAction("Index", "Home");
                     }
                 }
