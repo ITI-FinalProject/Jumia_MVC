@@ -13,6 +13,7 @@ namespace FinalProject.MVC.Data.ViewModel
         public string Emaill { get; set; }
         public string Address { get; set; }
 
+        public IFormFile File { get; set; }
 
         public IEnumerable<String> Roles { get; set; }
     }

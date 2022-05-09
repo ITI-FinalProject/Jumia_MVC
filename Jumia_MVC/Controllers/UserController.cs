@@ -121,7 +121,8 @@ namespace Jumia_MVC.Controllers
                 Email = user.Email,
                 UserName = user.UserName,
                 Address = user.Address,
-                Phone =user.PhoneNumber
+                Phone =user.PhoneNumber,
+                Image = user.ImageProfle
             };
 
             return View(viewModel);

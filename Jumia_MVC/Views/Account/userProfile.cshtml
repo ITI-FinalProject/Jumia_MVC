@@ -1,4 +1,6 @@
 ﻿@using Jumia_MVC.Data.ViewModel
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
 @model ProfileModelVM
 
 
@@ -21,6 +23,16 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
+
+               <div class="form-group">
+                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle align-content-center" width="150">
+                    <input type="file" id="btnUpload" value="Upload"/>
+                
+                 <span asp-validation-for="Image" class="text-danger"></span>
+                  </div>
+           
+        
+
                 <div class="form-group">
                  <label asp-for="FullName"></label>
                 <input asp-for="FullName" class="form-control" />
@@ -52,7 +64,8 @@
         
         
                   <div class="form-group my-3">
-                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                      <input type="button" class="btn btn-outline-success float-right" value=@localizer["Update" ] onclick="OK()" />
+                        
                         
                     </div>
                 </form>
@@ -61,3 +74,9 @@
     </div>
 </div>
 
+<script>
+function OK(){
+    alert("Thank you , Your data was updated ");
+
+}
+</script>
