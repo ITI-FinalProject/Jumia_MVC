@@ -8,14 +8,14 @@
    ViewData["titel"] = "userProfile";
 }
 
-<div class="row text">
+<div class="row text g-0">
     <div class="col-md-8 offset-2">
        <p>
             <h1>UserProfile:@Model.FullName</h1>
         </p>
-        <div class="row">
+        <div class="row g-0">
             <div class="col-md-8 offset-2">
-                <form asp-action="Edit">
+                <form asp-action="UserProfile" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                             <input type="hidden" asp-for="Id" />
@@ -25,10 +25,24 @@
                 </div>
 
                <div class="form-group">
-                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle align-content-center" width="150">
-                    <input type="file" id="btnUpload" value="Upload"/>
-                
-                 <span asp-validation-for="Image" class="text-danger"></span>
+                   @if(Model.Image != null)
+                {
+                    <img id="Profile" alt="Profile" class="profile-Picture" src="data:image/*;base64,@(Convert.ToBase64String(Model.Image))" />
+                }
+                else{ 
+
+                       <img id="Profile" alt="Profile" width="100px" height="100px" class="profile-Picture" src="~/image/Placeholder.png" />
+
+                    }
+                     <div class="custom-file mt-2">
+                        <input  type="file"  accept="image/*"
+                        asp-for="Image"
+                        onchange="document.getElementById('Profile').src=window.URL.createObjectURL(this.files[0])"
+                        class="custom-file-input" />
+@*                        <label class="custom-file-lable" asp-for="Image">Choose Picture</label>
+*@                         <span asp-validation-for="Image" class="text-danger"></span>
+
+                     </div>
                   </div>
            
         
@@ -56,7 +70,7 @@
                 <input asp-for="Address" class="form-control" maxlength=1000 />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           <div class="form-group">
                  <label asp-for="Phone"></label>
                 <input asp-for="Phone" class="form-control" maxlength=14 />
                 <span asp-validation-for="Phone" class="text-danger"></span>
@@ -64,8 +78,8 @@
         
         
                   <div class="form-group my-3">
-                      <input type="button" class="btn btn-outline-success float-right" value=@localizer["Update" ] onclick="OK()" />
-                        
+                       <input type="submit" value=@localizer["Update" ] class="btn btn-outline-success float-right" />
+
                         
                     </div>
                 </form>

@@ -238,3 +238,17 @@ body {
         height: 200px;
         width: 200px;
     }
+
+.profile-Picture {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.avater {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    margin:10px
+    
+}

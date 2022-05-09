@@ -1,0 +1,11 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
+<div class="row g-0  mt-6">
+    <div class="col-md-6 offset-3 alert alert-success text-center"
+        dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+        <h2>@localizer["success"] </h2>
+        <p>@localizer["check"] </p>
+        <hr />
+        <p>@localizer["thank"] </p>
+    </div>
+</div>

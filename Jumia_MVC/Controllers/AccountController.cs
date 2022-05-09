@@ -143,21 +143,71 @@ namespace Jumia_MVC.Controllers
         public async Task<ActionResult> UserProfile(string Id)
         {
             var user = await _userManager.FindByIdAsync(Id);
-
-               if (user == null)
+           
+            if (user == null)
                return NotFound();
 
 
             var viewModel = new ProfileModelVM
             {
-                Id = Id,
+               
                 FullName = user.UserName,
                 Email = user.Email,
                 UserName = user.UserName,
                 Address = user.Address,
-                Phone = user.PhoneNumber
+                Phone = user.PhoneNumber,
+                Image=user.ImageProfle
             };
+           
             return View(viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UserProfile(ProfileModelVM model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var user = await _userManager.FindByIdAsync(model.Id);
+
+            if (user == null) return NotFound();
+
+            var userWithSameEmail = await _userManager.FindByEmailAsync(model.Email);
+
+            if (userWithSameEmail != null && userWithSameEmail.Id != model.Id)
+            {
+                ModelState.AddModelError("Email", _localizer["EmailExists"].ToString());
+                return View(model);
+            }
+
+            var userWithSameuserName = await _userManager.FindByNameAsync(model.UserName);
+
+            if (userWithSameuserName != null && userWithSameuserName.Id != model.Id)
+            {
+                ModelState.AddModelError("UserName", _localizer["userNameExists"].ToString());
+                return View(model);
+            }
+            if (Request.Form.Files.Count > 0)
+            {
+                var file = Request.Form.Files.FirstOrDefault();
+                //check file size and extencion
+                using (var datastrem = new MemoryStream())
+                {
+                    await file.CopyToAsync(datastrem);
+                    user.ImageProfle = datastrem.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
+
+            }
+
+            user.FullName = model.FullName;
+            user.UserName = model.UserName;
+            user.Email = model.Email;
+
+            await _userManager.UpdateAsync(user);
+
+
+
+            return View("updatecompleted");
         }
 
     }
