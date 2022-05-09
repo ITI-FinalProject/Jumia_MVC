@@ -385,14 +385,30 @@
 
 @section Scripts{
  <script>
-      var swiper = new Swiper(".mySwiper", {
-          slidesPerView: 3,
-        spaceBetween: 30,
-        navigation: {
+      jQuery(document).ready(function () {
+  //initialize swiper when document ready
+  var mySwiper = new Swiper ('.mySwiper', {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  breakpoints: {  
+    '540': {
+      slidesPerView: 1,
+      spaceBetween: 10,},
+    '641': {
+      slidesPerView: 2,
+      spaceBetween: 20, },
+      '1008':{
+          slidesPerView:3,
+          spaceBetween:30,},
+  },
+    navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
-      });
+
+})
+
+});
     </script>
 }
            

@@ -69,7 +69,7 @@
 </style>
 
 
-<div class="row g-0 m-0">
+<div class="row mt-5 g-0 m-0">
     <div class=" col-9 offset-2 main">
         <div style="padding-top:100px"
         dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
@@ -77,8 +77,8 @@
         </div>
         @if (Model.Favorite.FavoriteItems.Count()==0)
 {
-    <pre>
-    </pre>
+      <pre>
+      </pre>
         <div class="text-center">
             <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='100' height='100'%3e%3cdefs%3e%3cpath id='a' d='M99.962 49.908c0 27.564-22.378 49.908-49.981 49.908C22.377 99.816 0 77.472 0 49.908S22.377 0 49.98 0c27.604 0 49.982 22.344 49.982 49.908'/%3e%3c/defs%3e%3cg fill='none' fill-rule='evenodd'%3e%3cmask id='b' fill='white'%3e%3cuse xlink:href='%23a'/%3e%3c/mask%3e%3cuse fill='%23F5F5F5' xlink:href='%23a'/%3e%3cg fill-rule='nonzero' mask='url(%23b)'%3e%3cpath fill='%23F68B1E' d='M61.496 29A12.01 12.01 0 0 0 51 35.127v35.83c3.38-2.511 22.5-17.287 22.5-30.082C73.5 34.317 68.125 29 61.496 29z'/%3e%3cpath fill='%23FFB048' d='M40.004 29C33.374 29 28 34.317 28 40.875c0 12.794 19.12 27.57 22.5 30.082v-35.83A12.011 12.011 0 0 0 40.004 29z'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e"
             alt=""><pre>
@@ -95,9 +95,9 @@
             dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
             @foreach (var item in Model.Favorite.FavoriteItems)
                 {
-                    <div class="item d-flex ">
-                        <a asp-action="Details" asp-route-id="@item.Product.Id" class="align-middle col-2"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" @*style="height:100px"*@ /></a> 
-                        <div class="align-middle col-6 p-2" ><div> @item.Product.Name<pre>
+                    <div class="item d-flex">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.Id" class="align-middle col-2"><img src="@item.Product.Image" class="card-img-top img-fluid rounded" @*style="height:100px"*@ /></a> 
+                        <div class="align-middle col-6 p-2" ><div class="text-truncate"> @item.Product.Name<pre>
                         </pre></div>
                         <div class="styleprice align-middle"><p class="card-text text-muted ">@item.Product.Price.ToString("c", new System.Globalization.CultureInfo("en-US"))</p>
                                     @if (item.Product.Discount != 0)
@@ -112,7 +112,7 @@
                                     }
                             </div>
                         </div>
-                        <div class="align-middle col-1"></div>
+                        <div class="align-middle col-md-1"></div>
                         <div>
                             <div class="btn-group">
                                     <a class="btn b1 addItemInCard" onclick="AddItemINCard(@item.Product.Id)"  >
@@ -122,19 +122,19 @@
                                 </div>
                             <pre>
                             </pre>
-                        <div class="align-middle">
-                                <div class="btn-group">
+                      @*  <div class="align-middle">
+                                <div class="btn-group">*@
                                     <a class="btn b2" asp-controller="Favorite" asp-action="RemoveItemFromFavorite" asp-route-id="@item.Product.Id" data-id="@item.Product.Id" >
                                        <i class="bi bi-trash"></i><span>@localizer["Remove"]</span></a>
                                 
                                 </div>
                         </div> 
-                        </div>
-                        </div>
+                        @*</div>
+                        </div>*@
                         <hr />
                 }
-                         
        </div>
+       
        
 
         <div class="text-center">
@@ -145,8 +145,9 @@
             </div>
         </div>
     
-
         }
+        </div>
+        </div>
 
 
 @section Scripts{

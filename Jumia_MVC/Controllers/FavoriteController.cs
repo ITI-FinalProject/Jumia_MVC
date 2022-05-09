@@ -22,7 +22,7 @@ namespace Jumia_MVC.Controllers
 
             return View(response);
         }
-
+        [MyAuthorize]
         public async Task<RedirectToActionResult> AddItemToFavorite(int id)
         {
             var item = await _productsService.GetProductByIdAsync(id);

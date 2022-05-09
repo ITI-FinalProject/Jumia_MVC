@@ -29,6 +29,8 @@ body {
 
 .card {
     margin: .5rem;
+    box-shadow: 1px 1px 8px lightgray;
+    border: none;
 }
 
 /*// .style_card {
