@@ -170,7 +170,7 @@ namespace Jumia_MVC.Controllers
         }
 
         //Filter Products
-        public async Task<IActionResult> FilterProducts( int CategoryId)
+        public async Task<IActionResult> FilterProducts( int CategoryId, string minPrice, string maxPrice, bool check)
         {
             var allProducts = await _productsService.GellAll(p => p.Category);
             var movieDropData = await _productsService.GetProductDropDownVM();
@@ -179,9 +179,32 @@ namespace Jumia_MVC.Controllers
 
             if (CategoryId == null) return View("Index", allProducts);
 
-       
             var submitFilter = allProducts.Where(e => e.CategoryId == CategoryId).ToList();
-           // FilterList = allProducts.Where(a => a.Category.Id == CategoryId ).ToList();
+
+            if (!string.IsNullOrEmpty(minPrice))
+            {
+                var min = int.Parse(minPrice);
+                submitFilter = submitFilter.Where(a => a.Price >= min).ToList() ;
+            }
+
+            if (!string.IsNullOrEmpty(maxPrice))
+            {
+                var max = int.Parse(maxPrice);
+                submitFilter = submitFilter.Where(b => b.Price <= max).ToList();
+            }
+
+            int discount = 0;
+
+            //if (check)
+            //{
+            //    discount = 1;
+            //    submitFilter = submitFilter.Where(c => c.Discount == discount).ToList();
+            //}
+            //else if (!check)
+            //{
+            //    submitFilter = submitFilter.Where(c => c.Discount == discount).ToList();
+            //}
+
             return View("Index", submitFilter);
         }
 
