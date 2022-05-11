@@ -193,17 +193,15 @@ namespace Jumia_MVC.Controllers
                 submitFilter = submitFilter.Where(b => b.Price <= max).ToList();
             }
 
-            int discount = 0;
 
-            //if (check)
-            //{
-            //    discount = 1;
-            //    submitFilter = submitFilter.Where(c => c.Discount == discount).ToList();
-            //}
-            //else if (!check)
-            //{
-            //    submitFilter = submitFilter.Where(c => c.Discount == discount).ToList();
-            //}
+            if (check)
+            {
+                submitFilter = submitFilter.Where(c => c.Discount != 0).ToList();
+            }
+            else if (!check)
+            {
+                submitFilter = submitFilter.Where(c => c.Discount == 0).ToList();
+            }
 
             return View("Index", submitFilter);
         }
