@@ -1,0 +1,40 @@
+﻿
+
+
+<div class="text-center m-5 p-5">
+    <form asp-action="Processing" asp-controller="Orders" method="post">
+        
+        <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Your Payment has been successfully processed!</h4>
+  <p>The details of the transaction are  <br />
+            Customer : @ViewBag.Customer <br /> <br />
+            Amount : $ @ViewBag.AmountPaid </p>
+  <hr>
+  <p class="mb-0">Your order is confirmed. You will receive an order confirmation email/SMS shortly with the expected delivery date for your items.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <a class="btn btn-outline-success" asp-controller="Product" asp-action="Index">CONTINUE SHOPPING</a>
+    </div>
+</div>
+
+@*            <label class="text-info">Your Payment has been successfully processed</label>
+        <br />
+        <br />
+        <p class="blockquote text-center">
+            The details of the transaction are  <br />
+            Customer : @ViewBag.Customer <br /> <br />
+            Amount : $ @ViewBag.AmountPaid 
+
+
+        </p>*@
+            
+                @*@if (TempData.Peek("TotalAmount") != null)
+                {
+                    var result = Convert.ToInt64(TempData.Peek("TotalAmount"));
+                    result /= 100; 
+                    <h3>Amount: @result USD has been processed successfully.</h3>
+                }*@ 
+    </form>
+</div>

@@ -6,6 +6,7 @@
     ViewData["Title"] = localizer["orders"];
 }
 
+
 <div class="row mt-6 g-0">
     <div class="col-md-8 offset-2"
         dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
@@ -38,6 +39,7 @@
                                 <li>
                                     <div class="alert alert-info" role="alert">
                                         <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c", new System.Globalization.CultureInfo("en-US"))] - @item.Product.Name
+                                        
                                     </div>
                                 </li>
                             }

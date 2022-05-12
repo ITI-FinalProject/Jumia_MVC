@@ -1,6 +1,8 @@
 ﻿
 
 using Microsoft.AspNet.Identity;
+using Stripe;
+using System.IO;
 
 namespace Jumia_MVC.Controllers
 {
@@ -27,6 +29,8 @@ namespace Jumia_MVC.Controllers
             return View(order);
 
         }
+
+
         [MyAuthorize]
         public IActionResult ShoppingCart()
         {
@@ -41,6 +45,52 @@ namespace Jumia_MVC.Controllers
         };
             return View(response);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ProcessingAsync(string stripeToken,string stripeEmail)
+        {
+
+            var optionCust = new CustomerCreateOptions
+            {
+                Email = stripeEmail,
+                Name = User.Identity.Name,
+                
+            };
+            var serviceCust = new CustomerService();
+            Customer customer = serviceCust.Create(optionCust);
+            var optionsCharge = new ChargeCreateOptions
+            {
+                Amount = (long?)_shoppingCart.GetShoppingCartTotal(),
+                Currency = "USD",
+                Description = "Buying Products",
+                Source = stripeToken,
+                ReceiptEmail = stripeEmail,
+            };
+            var serviceCharge = new ChargeService();
+            Charge charge = serviceCharge.Create(optionsCharge);
+            if (charge.Status == "succeeded")
+            {
+                string BalanceTransactionId = charge.BalanceTransactionId;
+                ViewBag.AmountPaid = Convert.ToDecimal(charge.Amount) % 100 / 100 + (charge.Amount);
+                ViewBag.BalanceTxId = BalanceTransactionId;
+                ViewBag.Customer = customer.Name;
+
+
+                var items = _shoppingCart.GetShoppingCartItems();
+
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                string userEmailAdddress = User.FindFirstValue(ClaimTypes.Email);
+
+
+                await _ordersService.StoreOrderAsync(items, userId, userEmailAdddress);
+                await _shoppingCart.ClearShoppingCartAsync();
+            }
+
+
+            return View();
+        }
+
+
         [MyAuthorize]
         public  async Task<IActionResult> AddItemToShoppingCart(int id)
         {

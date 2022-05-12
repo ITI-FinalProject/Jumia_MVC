@@ -1,9 +1,15 @@
-﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<Jumia_MVC.Data.Stripe.StripeSettings> Stripe 
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer;
+
 
 
 @{ 
     ViewData["Title"] = localizer["title"];
 }
+
+
+
 <div class="progress">  
    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" id="lblStatus">  
 </div>  
@@ -31,11 +37,37 @@
            
         </table>
         
+                            <div class="float-left" >
+            <form  asp-action="Processing" asp-controller="Orders" method="post">
+
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button float-right"
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-amount="@ViewBag.Total"
+                    data-name="[E-STORE]"
+                    data-description="Product payments"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="en"
+                    data-zip-code="true">
+                </script>
+            </form>
+            <br />
+
+
+        </div>
+        
         <div id="addButton" class="text-right">
             </div>
 
+
         </div>
+
         </div>
+
+
+
+
+
+
          
 
 
@@ -251,6 +283,10 @@
                     var url = '@Url.Action("Index","Product", new { })';
                     window.location.href = url;
         }
+
+
+      
+
     </script>
 
    

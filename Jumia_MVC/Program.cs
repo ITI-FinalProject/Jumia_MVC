@@ -4,14 +4,19 @@
 
 
 
+using Jumia_MVC.Data.Stripe;
+using Stripe;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling =
                                  Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+//stripe
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
-//add cors
+
 string text = "";
 builder.Services.AddCors(options =>
 {
@@ -49,6 +54,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                  .AddDefaultUI()
                  .AddDefaultTokenProviders();
 
+
+
 //add secion
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
@@ -56,6 +63,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 });
+
 
 //add localization
 builder.Services.AddLocalization(options => { options.ResourcesPath = "Resources"; });
@@ -76,6 +84,10 @@ builder.Services.Configure<RequestLocalizationOptions>(
     );
 
 var app = builder.Build();
+
+//add stripe 
+StripeConfiguration.SetApiKey(builder.Configuration.GetSection("Stripe")["Secretkey"]);
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
