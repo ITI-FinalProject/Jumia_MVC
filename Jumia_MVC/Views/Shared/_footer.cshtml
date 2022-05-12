@@ -4,8 +4,8 @@
     dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="row ">
   
-        <div class="col-md-3 col-12 my-3"> 
-            <h3 class="text-start text-uppercase text-dark fw-bold"> 
+        <div class="col-md-3 col-12 my-3  text-dark text-center"> 
+            <h3 class="text-start text-uppercase text-dark fw-bold  text-center"> 
             <img src="~/image/logo.png"> <span class=" mx-1 text-warning">E-</span>SHOPE</h3>
             <p class="text-secondary">
                 @localizer["footerDescription"]
@@ -18,36 +18,46 @@
               </div>
         </div>
    
-        <div class="col-12 col-md-3 my-3"> 
-            <h3 class="text-start text-uppercase text-dark fw-bold"> @localizer["Navigation"]</h3>
-            <ul class="list-group">
+        <div class="col-12 col-md-3 my-3  text-dark text-center "> 
+            <h3 class="text-start text-uppercase text-dark fw-bold  text-center"> @localizer["Navigation"]</h3>
+         @*   <ul class="list-group">
                 <li class="list-group-item-action text-secondary">@localizer["Home"] </li>
                 <li class=" list-group-item-action text-secondary">@localizer["OurService"] </li>
                 <li class="list-group-item-action text-secondary">@localizer["Feadback"]</li>
                 <li class="list-group-item-action text-secondary ">@localizer["request"]</li>
+            </ul>*@
+            <ul class="list-unstyled">
+                
+                    <a class="nav-link text-dark" asp-controller="Home" asp-action="Index"> @localizer["Home"] </a> 
+                    <a class="nav-link text-dark" asp-controller="Product" asp-action="Index">@localizer["Product"] </a>
+                    <a class="nav-link text-dark" asp-controller="About" asp-action="Index" >@localizer["About"] </a>
+                    <a class="nav-link text-dark" asp-controller="ContactUs"  asp-action="Index"> @localizer["ContactUs"] </a>
             </ul>
         </div>
   
-        <div class="col-12 col-md-3 my-3 "> 
-            <h3 class="text-start text-uppercase text-dark fw-bold"> @localizer["More"]</h3>
-            <ul class="list-group">
-                <li class="list-group-item-action text-secondary">@localizer["FAQ`S"] </li>
+        <div class="col-12 col-md-3 my-3  text-dark text-center "> 
+            <h3 class="text-start text-uppercase text-dark fw-bold text-center"> @localizer["More"]</h3>
+            <ul class="list-unstyled">
+                <a class="nav-link text-dark" href="#">@localizer["FAQ`S"] </a>
+                <a class="nav-link text-dark" href="#">@localizer["Privacy"] </a>
+                <a class="nav-link text-dark" href="#">@localizer["Liscences"]  </a>
+
+
+               @* <li class="list-group-item-action text-secondary">@localizer["FAQ`S"] </li>
                 <li class="list-group-item-action text-secondary">@localizer["Privacy"] </li>
-                <li class="list-group-item-action -text-secondary">@localizer["Liscences"] </li>
+                <li class="list-group-item-action -text-secondary">@localizer["Liscences"] </li>*@
   
             </ul>
         </div>
   
-        <div class="col-12 col-md-3 my-3 text-dark "> 
-            <h3 class="text-start text-uppercase fw-bold">@localizer["Contact"] </h3>
-            <ul class="list-group">
-                <li class="list-group-item-action text-secondary">abdo18 </li>
-                <li class="list-group-item-action text-secondary">streat 3456 mansoura </li>
-                <li class="list-group-item-action text-secondary">(20)3353132424</li>
-                <li class="list-group-item-action text-secondary">test@yahoo.com</li>
+        <div class="col-12 col-md-3 my-3 text-dark text-center"> 
+            <h3 class="text-start text-uppercase fw-bold  text-center">@localizer["Contact"] </h3>
+            <ul class="list-unstyled">
+                <li class="list-group-item-action text-secondary">E-SHOPE </li>
+                <li class="list-group-item-action text-secondary">MANSOURA</li>
+                <li class="list-group-item-action text-secondary">(20)353132424</li>
+                <li class="list-group-item-action text-secondary">e-Shpe@yahoo.com</li>
             </ul> 
-        </div>
-  
-    </div>
-  
+        </div> </div>
 </footer> 
+ 
