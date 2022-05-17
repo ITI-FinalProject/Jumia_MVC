@@ -2,43 +2,109 @@
 
 <style>
     header{
-        font-size:15px;
+        
     }
+    nav{
+        font-size:15px;
+        align-items:center;
+        position: sticky;
+        top:0;
+        z-index:1;
+    }
+    #navbar{
+        background-color:#faf8f8;
+    }
+    .navbar li {
+        list-style:none;
+        padding:0 10px;
+        position:relative;
+    }
+    .navbar li a{
+        text-decoration:none;
+        font-size:16px;
+        font-weight:700;
+        color:#1a1a1a;
+        transition:0.3s ease;
+    }
+    .navbar li a::after{
+        transition:0.3s ease;
+    }
+    .navbar li a:hover,
+    .navbar li a.active{
+        color:#f68b1e;
+    }
+    .navbar li a.active::after,
+    .navbar li a:hover::after{
+        content:"";
+        width:40%;
+        height:3px;
+        background:#f68b1e;
+        position:absolute;
+        bottom:-4px;
+        left:20px;
+    }
+    .bi-cart4:hover{
+        color:#f68b1e;
+    }
+    .form-control:focus {
+        box-shadow: none;
+    }
+    .form-control1 {
+    border: 0;
+    border-bottom: 1px solid #a1a2a3;
+    }
+
+        .form-control1,
+        .form-control1:focus,
+        .form-control1:focus:hover {
+            color: #f68b1e;
+            background: none;
+            outline: none;
+        }
+
+.form-control1:focus,
+.form-control1:focus:hover {
+    border-bottom: 3px solid #ff8d00;
+}
+.navbar-toggler-icon{
+    color:#ff8d00;
+}
+
 </style> 
 
 <header
     dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
-    <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-light bg-white border-bottom box-shadow  fixed-top justify-content-between">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-toggleable-lg fixed-top justify-content-between">
         <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <a class="navbar-brand text-start text-uppercase text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
                 <img src="~/image/logo.png" />
-                <span class="mx-1 text-warning">E-</span>SHOPE</a>
+                <span class="mx-1" style="color:#f68b1e;">E-</span>SHOPE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"><i class="fa-solid fa-align-justify"></i></span>
             </button>
             <div class="navbar-collapse collapse d-lg-inline-flex justify-content-end">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">@localizer["Product"] </a>
+                        <a class="" asp-area="" asp-controller="Product" asp-action="Index">@localizer["Product"] </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Favorite" asp-action="Favorite" >@localizer["Favourit"] </a>
+                        <a class="" asp-area="" asp-controller="Favorite" asp-action="Favorite" >@localizer["Favourit"] </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="ContactUs"  asp-action="Index" >@localizer["ContactUs"] </a>
+                        <a class="" asp-area="" asp-controller="ContactUs"  asp-action="Index" >@localizer["ContactUs"] </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="About" asp-action="Index" >@localizer["About"] </a>
+                        <a class="" asp-area="" asp-controller="About" asp-action="Index" >@localizer["About"] </a>
                     </li>   
-                   @* <li class="nav-item" >
+                    <li class="nav-item" >
                         <partial name="_Culture"/> 
-                    </li>*@
+                    </li>
                    
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Filter" style="padding-right: 25px;">
-                    <input name="searchString" type="text" class="form-control" placeholder=@localizer["search"]>
+                    <input name="searchString" type="text" class="form-control form-control1" placeholder=@localizer["search"]>
 @*                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
 *@              </form>
 

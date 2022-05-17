@@ -14,7 +14,9 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    padding-top: 15px;
+    margin-bottom: 60px;
+    background-color: #faf8f8;
 }
 
 .carousel-item > img {
@@ -253,4 +255,31 @@ body {
     object-fit: cover;
     margin:10px
     
+}
+.btn {
+    font-weight: bold;
+}
+
+.b2 {
+    color: #f68b1e;
+}
+
+    .b2:hover {
+        background-color: #feefde;
+        color: #f68b1e;
+    }
+
+.b1 {
+    background-color: #f68b1e;
+    color: white;
+    box-shadow: 3px 3px 5px lightgray
+}
+
+    .b1:hover {
+        color: #f68b1e;
+        background-color: white;
+    }
+
+.btn:focus {
+    box-shadow: none;
 }
