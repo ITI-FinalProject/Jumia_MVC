@@ -6,6 +6,14 @@
 
 @{
     ViewData["Title"] = @localizer["Product"] ;
+      Pager pager=new Pager();
+    int pageNo = 0;
+
+    if (ViewBag.pager != null)
+    {
+        pager = ViewBag.pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 
 <style>
@@ -183,7 +191,10 @@
 
         </div>
 
-        @*pagination*@
+
+       <partial name="_pager" model="@pager" />
+
+        @*pagination
 
         @if (ViewBag.Page > 0)
         {
@@ -199,6 +210,7 @@
                 @localizer["Next"]
             </a>
         }
+        *@
     </div>
 </div>
 

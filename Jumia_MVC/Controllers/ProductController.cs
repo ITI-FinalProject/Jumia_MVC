@@ -21,24 +21,50 @@ namespace Jumia_MVC.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public async Task<IActionResult> Index(int page = 0)
+        //public async Task<IActionResult> Index(int page = 0)
+        //{
+        //    var movieDropData = await _productsService.GetProductDropDownVM();
+        //    ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+
+        //    FilterList = await _productsService.GellAll(e=>e.Category);
+        //    if (FilterList == null) return View("NotFound");
+
+        //    //pagination
+
+        //    const int PageSize = 9;
+        //    var count = FilterList.Count(); //this.dataSource.Count();
+
+        //    var data = FilterList.Skip(page * PageSize).Take(PageSize).ToList();
+
+        //    this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+
+        //    this.ViewBag.Page = page;
+
+        //    return View(data);
+
+        //}
+        public async Task<IActionResult> Index(int pg = 1)
         {
             var movieDropData = await _productsService.GetProductDropDownVM();
             ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
 
-            FilterList = await _productsService.GellAll(e=>e.Category);
+            FilterList = await _productsService.GellAll(e => e.Category);
             if (FilterList == null) return View("NotFound");
 
-            //pagination
-            
-            const int PageSize = 9;
-            var count = FilterList.Count(); //this.dataSource.Count();
+         
+            const int pagsSize = 9;
+            if (pg < 1)
+            {
+                pg = 1;
+            }
+            int recsCount = FilterList.Count();
+            var pager = new Pager(recsCount, pg, pagsSize);
 
-            var data = FilterList.Skip(page * PageSize).Take(PageSize).ToList();
+            int recsSkip = (pg - 1) * pagsSize;
 
-            this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+            var data = FilterList.Skip(recsSkip).Take(pager.PageSize).ToList();
 
-            this.ViewBag.Page = page;
+            this.ViewBag.pager = pager;
 
             return View(data);
 

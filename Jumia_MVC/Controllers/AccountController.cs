@@ -64,7 +64,9 @@ namespace Jumia_MVC.Controllers
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
 
-            return View("RegisterCompleted");
+            //return View("RegisterCompleted");
+            return RedirectToAction("Index", "Home");
+
 
 
 
