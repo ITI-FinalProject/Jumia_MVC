@@ -37,8 +37,8 @@
            
         </table>
         
-                            <div class="float-left" >
-            <form  asp-action="Processing" asp-controller="Orders" method="post">
+                            <div class="float-left" style="display:inline-block" >
+            <form  asp-action="Processing" style="display:inline-block" asp-controller="Orders" method="post">
 
                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button float-right"
                     data-key="@Stripe.Value.PublishableKey"
@@ -55,8 +55,13 @@
 
         </div>
         
-        <div id="addButton" class="text-right">
-            </div>
+        <div id="addButton" style="display:inline-block" class="text-right float-right">
+
+
+
+        </div>
+
+        
 
 
         </div>
@@ -233,6 +238,9 @@
                     @localizer["add"]
                 </button>
             </div>`;
+
+
+            
    
       addButton.append(creatediv);
   }
