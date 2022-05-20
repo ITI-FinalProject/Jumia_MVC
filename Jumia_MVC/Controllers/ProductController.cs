@@ -201,11 +201,14 @@ namespace Jumia_MVC.Controllers
             var allProducts = await _productsService.GellAll(p => p.Category);
             var movieDropData = await _productsService.GetProductDropDownVM();
             ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
-          
+            var submitFilter = allProducts;
 
-            if (CategoryId == null) return View("Index", allProducts);
 
-            var submitFilter = allProducts.Where(e => e.CategoryId == CategoryId).ToList();
+
+            if (CategoryId != 0) //return View("Index", allProducts);
+            {
+                submitFilter = allProducts.Where(e => e.CategoryId == CategoryId).ToList();
+            }
 
             if (!string.IsNullOrEmpty(minPrice))
             {
