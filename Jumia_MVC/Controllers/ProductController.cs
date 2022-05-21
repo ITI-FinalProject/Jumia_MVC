@@ -122,10 +122,11 @@ namespace Jumia_MVC.Controllers
                 Description = res.Description,
                 Old_Price = res.Old_Price,
                 Quentity = res.Quentity,
+                CategoryId=res.CategoryId,
 
             };
             var movieDropData = await _productsService.GetProductDropDownVM();
-            ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name");
+            ViewBag.Category = new SelectList(movieDropData.Categories, "Id", "Name",new {res.CategoryId});
             return View(respone);
         }
         [HttpPost]
@@ -188,7 +189,7 @@ namespace Jumia_MVC.Controllers
                 var filteredResultNew = allProducts.Where(n => n.Name.ToLower().Contains(searchString.ToLower()) || n.Description.ToLower().Contains(searchString.ToLower())).ToList();
 
                 //var filteredResultNew = allProducts.Where(n => string.Equals(n.Name, searchString, StringComparison.CurrentCultureIgnoreCase) || string.Equals(n.Description, searchString, StringComparison.CurrentCultureIgnoreCase)).ToList();
-
+                TempData["serch"] = searchString;
                 return View("Index", filteredResultNew);
             }
 

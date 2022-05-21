@@ -115,11 +115,11 @@ var options = ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<
 app.UseRequestLocalization(options.Value);
 
 
-app.MapDefaultControllerRoute();
+//app.MapDefaultControllerRoute();
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 AppDbInitializer.Seed(app);
 //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
