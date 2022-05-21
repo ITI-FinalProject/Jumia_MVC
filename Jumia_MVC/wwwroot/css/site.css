@@ -33,6 +33,10 @@ body {
     margin: .5rem;
     box-shadow: 1px 1px 8px lightgray;
     border: none;
+    transition:all 1s;
+}
+.card:hover{
+    transform:scale(1.03);
 }
 
 /*// .style_card {

@@ -29,6 +29,7 @@ namespace Jumia_MVC.Controllers
             if (item != null)
             {
                 _favorite.AddItemToFavorite(item);
+                //item.in_favorites = true;
             }
             return RedirectToAction(nameof(Favorite));
         }
@@ -39,6 +40,7 @@ namespace Jumia_MVC.Controllers
             if (item != null)
             {
                 _favorite.RemoveItemFromFavorite(item);
+                //item.in_favorites = false;
             }
             return RedirectToAction(nameof(Favorite));
         }
