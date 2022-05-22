@@ -95,7 +95,12 @@
 
                           records_table.innerHTML="";
                           pro.innerHTML="";
-                             pro.innerHTML=`<h4>@localizer["yourCart"] </h4>`;
+                           pro.setAttribute("class","col-12 style_showmore ");
+
+                          
+                             pro.innerHTML=`<h4>@localizer["yourCart"] </h4> 
+                             <a class="btn btn-danger bg-danger text-white " 
+                             onclick="clearProduct();">Clear Cart</a>`;
                                    let trH = document.createElement("tr");
                                    let head = document.createElement("thead");
                           let stahtml=`<th>@localizer["Product"] </th>
@@ -135,7 +140,7 @@
 
 @*                                           <a class="btn btn-danger bg-danger text-white removeItem"data-itemid="@item.Product.Id">Remove</a>
 *@
-                                           <a class="btn btn-danger bg-danger text-white ">@localizer["Remove"]</a>
+                                           
 
                                  </div>
                         </div>`;
@@ -289,6 +294,10 @@
 
    function gotoProduct(){
                     var url = '@Url.Action("Index","Product", new { })';
+                    window.location.href = url;
+        }
+         function clearProduct(){
+                    var url = '@Url.Action("claer","Orders", new { })';
                     window.location.href = url;
         }
 

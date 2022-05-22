@@ -58,18 +58,16 @@
     .clear:hover{
         background-color: cadetblue;
     }
-    img, .card-img-overlay{
-        transition:all 1s;
+    .c1:hover{
+        transform:none;
     }
-    img:hover, .card-img-overlay:hover{
-        transform:scale(1.03);
-    }
+    
 </style>
 
 <div class="row cont" 
     dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
     <div class="col-sm-3 ">
-        <div class="card ">
+        <div class="card c1">
             <div class="card-body type_card">
                 <h2 class="card-title">Filter Product</h2>
                 <form  asp-action="FilterProducts" asp-controller="Product">

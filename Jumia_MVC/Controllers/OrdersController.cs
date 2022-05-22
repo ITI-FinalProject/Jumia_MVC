@@ -131,5 +131,10 @@ namespace Jumia_MVC.Controllers
             return View("OrderCompleted");
 
         }
+        public async Task<IActionResult> claer()
+        {
+            await _shoppingCart.ClearShoppingCartAsync();
+            return RedirectToAction("ShoppingCart", "Orders");
+        }
     }
 }

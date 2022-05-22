@@ -18,11 +18,12 @@
         list-style:none;
         padding:0 10px;
         position:relative;
+        padding-top:5px;
     }
     .navbar li a{
         text-decoration:none;
         font-size:16px;
-        font-weight:700;
+        font-weight:750;
         color:#1a1a1a;
         transition:0.3s ease;
     }
@@ -97,14 +98,14 @@
                     <li class="nav-item">
                         <a class="" asp-area="" asp-controller="About" asp-action="Index" >@localizer["About"] </a>
                     </li>   
-                    <li class="nav-item" >
+                    <li class="nav-item" style="padding-top:1px;" >
                         <partial name="_Culture"/> 
                     </li>
                    
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Filter" style="padding-right: 25px;">
-                    <input name="searchString" type="text" class="form-control form-control1" placeholder=@localizer["search"]>
+                    <input name="searchString" value="@TempData["serch"]" type="text" class="form-control form-control1" placeholder=@localizer["search"]>
 @*                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
 *@              </form>
 

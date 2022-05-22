@@ -35,6 +35,7 @@ namespace Jumia_MVC.Controllers.Api
             if (item != null)
             {
                 _favorite.AddItemToFavorite(item);
+                //item.in_favorites = true;
             }
             return Ok(item);
         }
@@ -47,6 +48,7 @@ namespace Jumia_MVC.Controllers.Api
             if (item != null)
             {
                 _favorite.RemoveItemFromFavorite(item);
+                //item.in_favorites = false;
             }
             return Ok();
         }
