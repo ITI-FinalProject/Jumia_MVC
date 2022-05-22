@@ -63,6 +63,7 @@ namespace Jumia_MVC.Controllers
 
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
+            //update
             var result = await _signInManager.PasswordSignInAsync(newUser, registerVM.Password, false, false);
             HttpContext.Session.SetString("USERID", $"{newUser.Id}");
 
