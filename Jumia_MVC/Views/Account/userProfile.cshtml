@@ -9,22 +9,24 @@
 }
 
 <div class="row text g-0">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-10 offset-2 m-5 justify-content-center">
        <p>
-            <h1>UserProfile:@Model.FullName</h1>
+            <h1 class="text-center orange">UserProfile:@Model.FullName</h1>
+                    <h4 class="text-center ">Profile Settings</h4>
+   
         </p>
-        <div class="row g-0">
+        <div class="row g-2">
             <div class="col-md-8 offset-2">
                 <form asp-action="UserProfile" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                             <input type="hidden" asp-for="Id" />
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
-                </div>
+                @*<div class="d-flex justify-content-between align-items-center mb-3 p-lg-3 ">
+                    <h4 class="text-center ">Profile Settings</h4>
+                </div>*@
 
-               <div class="form-group">
+               <div class="form-group align-self-xl-start  ">
                    @if(Model.Image != null)
                 {
                     <img id="Profile" alt="Profile" class="profile-Picture" src="data:image/*;base64,@(Convert.ToBase64String(Model.Image))" />
