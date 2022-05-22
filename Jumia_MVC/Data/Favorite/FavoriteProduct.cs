@@ -42,11 +42,13 @@ namespace Jumia_MVC.Data.Favorite
                     Amount = 1
                 };
                 _context.FavoriteItems.Add(favoriteItem);
+                
             }
             else
             {
                // favoriteItem.Amount++;
             }
+            product.in_favorites = true;
             _context.SaveChanges();
         }
 
@@ -65,6 +67,7 @@ namespace Jumia_MVC.Data.Favorite
                     _context.FavoriteItems.Remove(favoriteItem);
                 }
             }
+            product.in_favorites = false;
             _context.SaveChanges();
         }
 
