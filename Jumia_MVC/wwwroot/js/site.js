@@ -138,13 +138,13 @@ function addItem(id) {
 }
 //favourit
 
-function AddItemINFavourit(id) {
+function AddItemINFavourit(id, changeheart) {
     $.ajax({
         url: '/api/FavouritApi/' + id,
         method: "put",
         success: function (data) {
-           // $('#changeheart').removeClass("fa-regular");
-           // $('#changeheart').addClass("fa-solid");
+            $(changeheart).removeClass("far fa-heart");
+            $(changeheart).addClass("fas fa-heart");
             swal({
                 title: "Done",
                 text: "Product Add To Favourit",
@@ -191,7 +191,7 @@ function deleteFavourit(id) {
 
 //header
 window.addEventListener("scroll", function () {
-    if (window.scrollY > 150) {
+    if (window.scrollY > 100) {
         document.querySelector("#navbar").style.opacity = 0.9;
     } else {
         document.querySelector("#navbar").style.opacity = 1;
