@@ -47,12 +47,11 @@ builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
 builder.Services.AddScoped(fp => FavoriteProduct.GetFavoriteProduct(fp));
 
-builder.Services.AddRazorPages();
 //add Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-                 .AddEntityFrameworkStores<ApplicationDBContext>()
-                 .AddDefaultUI()
-                 .AddDefaultTokenProviders();
+                 .AddEntityFrameworkStores<ApplicationDBContext>();
+                 //.AddDefaultUI()
+                 //.AddDefaultTokenProviders();
 
 
 
@@ -123,10 +122,10 @@ app.MapControllerRoute(
 AppDbInitializer.Seed(app);
 //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
-//app.MapRazorPages();
-app.UseEndpoints(e =>
-{
-    e.MapRazorPages();
-});
+app.MapRazorPages();
+//app.UseEndpoints(e =>
+//{
+//    e.MapRazorPages();
+//});
 
 app.Run();

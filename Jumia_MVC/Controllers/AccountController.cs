@@ -63,7 +63,16 @@ namespace Jumia_MVC.Controllers
 
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
+            var result = await _signInManager.PasswordSignInAsync(newUser, registerVM.Password, false, false);
+            HttpContext.Session.SetString("USERID", $"{newUser.Id}");
 
+            //if (result.Succeeded)
+            //{
+            //    // HttpContext.Session.GetString("USERID");
+
+
+            //    return RedirectToAction("Index", "Home");
+            //}
             //return View("RegisterCompleted");
             return RedirectToAction("Index", "Home");
 
