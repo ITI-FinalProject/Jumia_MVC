@@ -101,10 +101,10 @@
                              @if (User.Identity.IsAuthenticated)
                             {
                                       <a class="itemHover "  onclick="AddItemINCard(@item.Id)">
-                                       <i class="fas fa-cart-plus text-primary"></i> </a >
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
 
-                                       <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
-                                            <i class="fas fa-heart text-primary"></i> </a>
+                                       <a  class="itemHover" style="border: none; background-color: #d3d3d4">
+                                            <i  onclick="AddItemINFavourit(@item.Id,this)" class="far fa-heart" style="color:#f68b1e" id="changeheart"></i> </a>
           
                                        @*@if (item.in_favorites == false)
                                        {
@@ -119,10 +119,10 @@
 
                     }else{
                                  <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
-                                       <i class="fas fa-cart-plus text-primary"></i> </a >
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
           
                                         <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
-                                         <i class="fas fa-heart text-primary"></i> </a>
+                                         <i class="far fa-heart" style="color:#f68b1e"></i> </a>
 
                             }
             </div>
@@ -199,7 +199,10 @@
                         @if (User.Identity.IsAuthenticated)
                             {
                                       <a class="itemHover "  onclick="AddItemINCard(@item.Id)">
-                                       <i class="fas fa-cart-plus text-primary"></i> </a >
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
+
+                                       <a  class="itemHover" style="border: none; background-color: #d3d3d4">
+                                            <i  onclick="AddItemINFavourit(@item.Id,this)" class="far fa-heart" style="color:#f68b1e" id="changeheart"></i> </a>
           
                                        @*@if (item.in_favorites == false)
                                        {
@@ -211,14 +214,13 @@
                                            <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
                                             <i class="fas fa-heart text-danger"></i> </a>
                                        }*@
-                                       <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
-                                            <i class="fas fa-heart text-primary"></i> </a>
+                                      
                             }else{
                                  <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
-                                       <i class="fas fa-cart-plus text-primary"></i> </a >
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
           
                                         <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
-                                         <i class="fas fa-heart text-primary"></i> </a>
+                                         <i class="far fa-heart" style="color:#f68b1e"></i> </a>
 
                             }
                         </div>
@@ -379,10 +381,10 @@
                            @if (User.Identity.IsAuthenticated)
                             {
                                       <a class="itemHover "  onclick="AddItemINCard(@item.Id)">
-                                       <i class="fas fa-cart-plus text-primary"></i> </a >
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
 
-                                       <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
-                                            <i class="fas fa-heart text-primary"></i> </a>
+                                       <a  class="itemHover" style="border: none; background-color: #d3d3d4">
+                                            <i  onclick="AddItemINFavourit(@item.Id,this)" class="far fa-heart" style="color:#f68b1e" id="changeheart"></i> </a>
           
                                         @*@if (item.in_favorites == false)
                                        {
@@ -391,15 +393,15 @@
                                        }
                                        else if(item.in_favorites == true)
                                        {
-                                           <a onclick="AddItemINFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
+                                           <a onclick="deleteFavourit(@item.Id)"  class="itemHover" style="border: none; background-color: #d3d3d4">
                                             <i class="fas fa-heart text-danger"></i> </a>
                                        }*@
                             }else{
                                  <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
-                                       <i class="fas fa-cart-plus text-primary"></i> </a >
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
           
                                         <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
-                                         <i class="fas fa-heart text-primary"></i> </a>
+                                         <i class="far fa-heart" style="color:#f68b1e"></i> </a>
 
                             }
             </div>

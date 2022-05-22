@@ -159,18 +159,17 @@
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <a   class="addItemInCard itemHover"  data-id="@item.Id" >
-                                        <i class="fas fa-cart-plus text-primary"></i> </a > 
-                                        <a class="addItemInFav itemHover" data-id="@item.Id">
-                                            <i  id="changeheart" class="fa-solid fa-heart"></i>
-                                        </a>
+                                        <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a > 
+                                        <a  class="itemHover" style="border: none; background-color: #d3d3d4">
+                                            <i  onclick="AddItemINFavourit(@item.Id,this)" class="far fa-heart" style="color:#f68b1e" id="changeheart"></i> </a>
+                                        
                                     }else{
-                                        <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" >
-                                            <i class="fas fa-cart-plus text-primary"></i> 
-                                        </a >
+                                         <a class="addItemInCard"  asp-action="Login" asp-controller="Account">
+                                       <i class="fas fa-cart-plus" style="color:#f68b1e"></i> </a >
+          
+                                        <a class="addItemInCard"  asp-action="Login" asp-controller="Account"  style="border: none; background-color: #d3d3d4">
+                                         <i class="far fa-heart" style="color:#f68b1e"></i> </a>
 
-                                        <a asp-controller="Favorite" asp-action="AddItemToFavorite" asp-route-id="@item.Id">
-                                            <i  class="fas fa-heart text-primary"></i>
-                                        </a>
                                     }
                                    @* <a   asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id" onclick="return confirm('success Product Add in Cart ');">
                                         <i class="fas fa-cart-plus text-primary"></i> </a >
